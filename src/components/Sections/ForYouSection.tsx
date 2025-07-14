@@ -27,7 +27,7 @@ export default function ForYouSection() {
   ];
 
   return (
-    <section id="para-ti" className="py-20 relative z-10 overflow-hidden">
+    <section id="para-ti" className="pt-8 pb-20 relative z-10 overflow-hidden">
       <div
         className={`absolute top-16 left-16 w-36 h-36 bg-gradient-radial ${currentStyle.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
       ></div>
@@ -75,7 +75,7 @@ export default function ForYouSection() {
             >
               ¿Te identificás con alguno de estos puntos?
             </h3>
-            <p className="text-white mb-6" style={fontClass.text}>
+            <p className="text-white mb-6 text-lg" style={fontClass.text}>
               Entonces este recorrido está hecho para vos.
             </p>
             <div className="flex justify-center">

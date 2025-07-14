@@ -36,26 +36,26 @@ export default function AboutCourseSection() {
             className="space-y-4 text-white text-lg leading-relaxed"
             style={fontClass.text}
           >
-            <p>
+            <p className="text-lg">
               Un proceso de 21 días de autoexploración y reprogramación interna
               para reconectar con tu esencia, resignificar tu historia y habitar
               tu vida desde una nueva vibración.
             </p>
-            <p>
+            <p className="text-lg">
               Cada día, vas a transitar un aspecto esencial del ser, como el
               propósito, la abundancia, los vínculos, la energía sexual y
               creativa, el miedo o el amor incondicional, abriendo puertas hacia
               nuevas dimensiones de tu conciencia.
             </p>
-            <p>
+            <p className="text-lg">
               A través de meditaciones activadoras, movilizás memorias,
               desbloqueás emociones y sembrás una nueva frecuencia.
             </p>
-            <p>
+            <p className="text-lg">
               Y con ejercicios creativos y prácticos, integrás cada experiencia
               en tu cuerpo, tu palabra y tu vida cotidiana.
             </p>
-            <p>
+            <p className="text-lg">
               Para que la transformación no quede solo en lo sutil, sino que se
               vuelva forma, acción y decisión.
             </p>
@@ -75,13 +75,14 @@ export default function AboutCourseSection() {
             >
               Un viaje desde lo sutil a lo tangible.
             </h3>
-            <div className="space-y-4 text-white" style={fontClass.text}>
-              <p>
-                Cada meditación te va a guiar hacia adentro, y cada ejercicio te
-                va a invitar a traducir eso que sentiste en algo concreto: un
-                movimiento, una escritura, una reflexión, una acción.
-              </p>
-            </div>
+            <p
+              className="w-full text-center text-3xl sm:text-4xl lg:text-5xl text-slate-200 font-medium py-8 italic opacity-70"
+              style={fontClass.text}
+            >
+              Cada meditación te va a guiar hacia adentro, y cada ejercicio te
+              va a invitar a traducir eso que sentiste en algo concreto: un
+              movimiento, una escritura, una reflexión, una acción.
+            </p>
           </motion.div>
         </div>
       </div>

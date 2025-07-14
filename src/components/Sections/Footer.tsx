@@ -41,7 +41,10 @@ export default function Footer() {
         </div>
 
         {/* Tagline */}
-        <p className="text-white mb-2 max-w-md mx-auto" style={fontClass.text}>
+        <p
+          className="text-white mb-2 max-w-md mx-auto text-lg"
+          style={fontClass.text}
+        >
           Integrando lo humano y lo divino en vos
         </p>
 

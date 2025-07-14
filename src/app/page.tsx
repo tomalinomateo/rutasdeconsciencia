@@ -12,6 +12,9 @@ import CTASection from "@/components/Sections/CTASection";
 import Footer from "@/components/Sections/Footer";
 import StyleSelector from "@/components/StyleSelector";
 import FontSelector from "@/components/FontSelector";
+import StickyHeader from "@/components/StickyHeader";
+import TitleFontSelector from "@/components/TitleFontSelector";
+import TematicasSection from "@/components/Sections/TematicasSection";
 import { useFontLoader } from "@/hooks/useFontLoader";
 
 export default function LandingPage() {
@@ -28,17 +31,21 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen relative">
       <SpacialBackground />
-      <Header scrollToSection={scrollToSection} />
+      <StickyHeader />
       <HeroSection scrollToSection={scrollToSection} />
       <StatsSection />
       <AboutCourseSection />
+      <TematicasSection />
       <ForYouSection />
       <AboutMeSection />
       <FAQSection />
       <CTASection />
       <Footer />
-      <StyleSelector />
-      <FontSelector />
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4 items-end">
+        <StyleSelector />
+        <FontSelector />
+        <TitleFontSelector />
+      </div>
     </div>
   );
 }

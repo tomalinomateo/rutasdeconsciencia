@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import PurchaseButton from "../PurchaseButton";
 import { useStyle } from "@/context/StyleContext";
 import { useFontClass } from "@/hooks/useFontClass";
+import { useTitleFont, TITLE_FONT_COMBOS } from "@/context/TitleFontContext";
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -14,7 +15,16 @@ interface HeroSectionProps {
 export default function HeroSection({ scrollToSection }: HeroSectionProps) {
   const { currentStyle } = useStyle();
   const { fontClass } = useFontClass();
-
+  const { titleFontCombo } = useTitleFont();
+  const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
+  const fontClassMap = {
+    lora: "font-[var(--font-lora)]",
+    parisienne: "font-[var(--font-parisienne)]",
+    italianno: "font-[var(--font-italianno)]",
+    alegreyaSC: "font-[var(--font-alegreyasc)]",
+    dancingscript: "font-[var(--font-dancingscript)]",
+    librebaskerville: "font-[var(--font-librebaskerville)]",
+  };
   return (
     <section className="relative overflow-hidden z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
@@ -24,29 +34,70 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1
-              className="text-4xl lg:text-5xl font-bold text-white mb-6"
-              style={fontClass.title}
-            >
-              <span
-                className={`${currentStyle.colors.primary} block text-3xl lg:text-4xl mb-4`}
+            <div className="mb-3 w-full">
+              <h1
+                id="alquimia-title"
+                className={`text-5xl sm:text-6xl lg:text-7xl ${currentStyle.colors.primary} flex flex-wrap items-end text-left whitespace-nowrap`}
+                style={fontClass.title}
               >
-                21 días de reprogramación interna
+                <span style={{ fontFamily: `var(--font-${fontA})` }}>
+                  Alquimia
+                </span>
+                <span
+                  className="ml-2"
+                  style={{ fontFamily: `var(--font-${fontB})` }}
+                >
+                  Raiz
+                </span>
+              </h1>
+              <span
+                className="block text-lg text-gray-400 italic text-right mt-2 pr-1"
+                style={{ minWidth: "max-content" }}
+              >
+                de{" "}
+                <a
+                  href="https://instagram.com/retornoalorigen__"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-indigo-300"
+                >
+                  @retornoalorigen__
+                </a>
               </span>
-              A través de activaciones meditativas y prácticas conscientes.
-            </h1>
+            </div>
+            <h2
+              className={`text-2xl lg:text-3xl font-medium mb-1 ${currentStyle.colors.primary}`}
+              style={fontClass.text}
+            >
+              21 días de reprogramación interna
+            </h2>
+            <h3
+              className={`text-xl font-medium mb-4 ${currentStyle.colors.primary}`}
+              style={fontClass.text}
+            >
+              A través de la meditación y ejercicios conscientes
+            </h3>
             <p
               className="text-xl text-white font-medium mb-4"
               style={fontClass.text}
             >
               Un recorrido por 21 aspectos esenciales del ser a través de la
-              meditación y la práctica consciente, para despertar la
-              consciencia, conectar con lo sagrado y habitar tu vida desde una
-              nueva vibración / y reprogramar la forma en la que habitás tu
-              realidad.
+              meditación y la práctica consciente, para conectar con lo sagrado,
+              adquirir una nueva visión de tu realidad y habitarla desde una
+              nueva vibración.
             </p>
-            <div className="flex justify-center">
-              <PurchaseButton variant="primary" size="large" />
+            <div
+              id="main-purchase-btn"
+              className="flex justify-center mt-6 relative"
+            >
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
+                <div className="w-56 h-20 rounded-full bg-gradient-to-br from-yellow-300 via-pink-300 to-transparent blur-3xl opacity-80 animate-pulse"></div>
+              </div>
+              <PurchaseButton
+                variant="primary"
+                size="large"
+                className="lg:px-14 lg:py-6 lg:text-2xl"
+              />
             </div>
           </motion.div>
           <motion.div

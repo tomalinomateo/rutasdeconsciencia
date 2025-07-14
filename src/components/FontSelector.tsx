@@ -40,7 +40,7 @@ export default function FontSelector() {
     <>
       {/* Botón flotante */}
       <motion.div
-        className="fixed bottom-6 right-24 z-50"
+        className=""
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 1.2, duration: 0.3 }}

@@ -80,17 +80,17 @@ export default function AboutMeSection() {
               </a>
             </div>
             <div className="space-y-4 text-white" style={fontClass.text}>
-              <p>
+              <p className="text-lg">
                 Me llamo María Cruz, nací en Córdoba, Argentina, y desde muy
                 chica sentí que había una fuerza más grande que me sostenía.
               </p>
-              <p>
+              <p className="text-lg">
                 Hasta que a los 19, viajando sola por primera vez, empecé a
                 incomodarme por dentro. Lo que había callado por años empezó a
                 pedirme paso. Ese fue el inicio de mi búsqueda. Mi primer gran
                 despertar.
               </p>
-              <p>
+              <p className="text-lg">
                 Estudié Psicología, pero sentía que algo faltaba. Que el alma no
                 estaba incluida. Así empecé a explorar otras herramientas:{" "}
                 <strong className="text-white">
@@ -99,7 +99,7 @@ export default function AboutMeSection() {
                 , y otras disciplinas que integraran lo mental, lo emocional, lo
                 corporal y lo espiritual.
               </p>
-              <p>
+              <p className="text-lg">
                 Hoy acompaño procesos desde mi recorrido, mis heridas, mis
                 aprendizajes, pero sobre todo, desde mi ser.{" "}
                 <strong className="text-white">

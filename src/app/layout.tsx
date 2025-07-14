@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Lora,
+  Parisienne,
+  Italianno,
+  Alegreya_SC,
+  Dancing_Script,
+  Libre_Baskerville,
+} from "next/font/google";
 import "./globals.css";
 import { StyleProvider } from "@/context/StyleContext";
 import { FontProvider } from "@/context/FontContext";
+import { TitleFontProvider } from "@/context/TitleFontContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +21,37 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+const parisienne = Parisienne({
+  variable: "--font-parisienne",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+const italianno = Italianno({
+  variable: "--font-italianno",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+const alegreyaSC = Alegreya_SC({
+  variable: "--font-alegreyasc",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+const dancingScript = Dancing_Script({
+  variable: "--font-dancingscript",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+const libreBaskerville = Libre_Baskerville({
+  variable: "--font-librebaskerville",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -37,10 +77,12 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${parisienne.variable} ${italianno.variable} ${alegreyaSC.variable} ${dancingScript.variable} ${libreBaskerville.variable} antialiased text-lg`}
       >
         <FontProvider>
-          <StyleProvider>{children}</StyleProvider>
+          <StyleProvider>
+            <TitleFontProvider>{children}</TitleFontProvider>
+          </StyleProvider>
         </FontProvider>
       </body>
     </html>

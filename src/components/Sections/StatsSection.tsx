@@ -22,16 +22,16 @@ export default function StatsSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center items-center">
           <div className="text-center">
             <div className="flex justify-center mb-4">
-              <Calendar className={`h-12 w-12 ${getIconColor()}`} />
+              <Sparkles className={`h-12 w-12 ${getIconColor()}`} />
             </div>
             <h3
               className="text-3xl font-bold text-white mb-2"
               style={fontClass.title}
             >
-              21 días
+              21 temáticas
             </h3>
-            <p className="text-white" style={fontClass.text}>
-              para transformar tu mundo interno y manifestarlo en tu realidad.
+            <p className="text-white text-lg" style={fontClass.text}>
+              que abren puertas hacia una nueva comprensión de tu realidad
             </p>
           </div>
           <div className="text-center">
@@ -39,13 +39,13 @@ export default function StatsSection() {
               <BookOpen className={`h-12 w-12 ${getIconColor()}`} />
             </div>
             <h3
-              className="text-3xl font-bold text-white mb-2"
+              className="text-3xl font-bold text-white mb-2 whitespace-nowrap"
               style={fontClass.title}
             >
               21 meditaciones
             </h3>
-            <p className="text-white" style={fontClass.text}>
-              para reprogramar tu consciencia desde lo sagrado.
+            <p className="text-white text-lg" style={fontClass.text}>
+              para transformar tu mundo interno.
             </p>
           </div>
           <div className="text-center">
@@ -56,10 +56,10 @@ export default function StatsSection() {
               className="text-3xl font-bold text-white mb-2"
               style={fontClass.title}
             >
-              21 temáticas
+              Guía práctica de ejercicios
             </h3>
-            <p className="text-white" style={fontClass.text}>
-              que abren puertas hacia una nueva comprensión de tu realidad
+            <p className="text-white text-lg" style={fontClass.text}>
+              para manifestar ese cambio interno en tu realidad.
             </p>
           </div>
         </div>

@@ -45,7 +45,7 @@ export default function SpacialBackground() {
 
       {/* Estrella fugaz (cometa) lateral */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-16 right-8 w-px h-20 bg-gradient-to-b from-white to-transparent opacity-50 animate-pulse transform rotate-45"></div>
+        <div className="absolute top-38 right-8 w-px h-20 bg-gradient-to-b from-white to-transparent opacity-50 animate-pulse transform rotate-45"></div>
       </div>
 
       {/* Partículas brillantes laterales */}
