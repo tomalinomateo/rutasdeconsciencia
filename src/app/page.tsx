@@ -15,6 +15,7 @@ import FontSelector from "@/components/FontSelector";
 import StickyHeader from "@/components/StickyHeader";
 import TitleFontSelector from "@/components/TitleFontSelector";
 import TematicasSection from "@/components/Sections/TematicasSection";
+import TransformationSection from "@/components/Sections/TransformationSection";
 import { useFontLoader } from "@/hooks/useFontLoader";
 
 export default function LandingPage() {
@@ -35,6 +36,7 @@ export default function LandingPage() {
       <HeroSection scrollToSection={scrollToSection} />
       <StatsSection />
       <AboutCourseSection />
+      <TransformationSection />
       <TematicasSection />
       <ForYouSection />
       <AboutMeSection />

@@ -29,7 +29,7 @@ export default function CTASection() {
             className={`text-4xl font-bold ${getTitleColor()} mb-4`}
             style={fontClass.title}
           >
-            ¿Listo para recordar quién sos?
+            ¿Listo para activar tu alquimia?
           </h2>
           <p
             className="text-xl text-white mb-8 opacity-90"
@@ -42,7 +42,7 @@ export default function CTASection() {
               <PurchaseButton variant="primary" size="large" />
             </div>
             <p className="text-lg text-white opacity-90" style={fontClass.text}>
-              Reconecta con lo sagrado en lo cotidiano
+              Reconectá con lo sagrado en lo cotidiano
               <br />
               <span className="text-sm text-white opacity-75">
                 21 puertas para explorar tu universo interno

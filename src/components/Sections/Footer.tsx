@@ -3,10 +3,13 @@
 import { Moon, Sparkles, Instagram } from "lucide-react";
 import { useStyle } from "@/context/StyleContext";
 import { useFontClass } from "@/hooks/useFontClass";
+import { useTitleFont, TITLE_FONT_COMBOS } from "@/context/TitleFontContext";
 
 export default function Footer() {
   const { currentStyle } = useStyle();
   const { fontClass } = useFontClass();
+  const { titleFontCombo } = useTitleFont();
+  const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
 
   // Función para obtener el color de los iconos
   const getIconColor = () => {
@@ -35,9 +38,18 @@ export default function Footer() {
               className={`h-4 w-4 ${getAccentColor()} absolute -top-1 -right-1`}
             />
           </div>
-          <span className="text-2xl font-bold" style={fontClass.title}>
-            Alquimia Raiz
-          </span>
+          <div
+            className={`text-2xl font-bold flex flex-wrap items-end whitespace-nowrap ${currentStyle.colors.secondary}`}
+            style={fontClass.title}
+          >
+            <span style={{ fontFamily: `var(--font-${fontA})` }}>Alquimia</span>
+            <span
+              className="ml-1"
+              style={{ fontFamily: `var(--font-${fontB})` }}
+            >
+              Raiz
+            </span>
+          </div>
         </div>
 
         {/* Tagline */}

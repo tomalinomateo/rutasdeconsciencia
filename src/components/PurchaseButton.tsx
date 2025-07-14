@@ -26,7 +26,7 @@ export default function PurchaseButton({
   const handlePurchase = () => {
     // Aquí se integrará el sistema de pagos
     console.log("Iniciando proceso de compra...");
-    alert("¡Próximamente! Sistema de pagos en desarrollo.");
+    alert("¡Próximamente se habilitaran las inscripciones!");
   };
 
   const baseClasses = `font-bold transition-all duration-300 flex items-center justify-center space-x-2 rounded-full`;

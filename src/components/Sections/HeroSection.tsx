@@ -69,22 +69,22 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
               className={`text-2xl lg:text-3xl font-medium mb-1 ${currentStyle.colors.primary}`}
               style={fontClass.text}
             >
-              21 días de reprogramación interna
+              21 días para reprogramar por dentro y transformar por fuera
             </h2>
             <h3
               className={`text-xl font-medium mb-4 ${currentStyle.colors.primary}`}
               style={fontClass.text}
             >
-              A través de la meditación y ejercicios conscientes
+              Guiados por la meditacion y ejercicios conscientes
             </h3>
             <p
               className="text-xl text-white font-medium mb-4"
               style={fontClass.text}
             >
-              Un recorrido por 21 aspectos esenciales del ser a través de la
-              meditación y la práctica consciente, para conectar con lo sagrado,
-              adquirir una nueva visión de tu realidad y habitarla desde una
-              nueva vibración.
+              Un viaje profundo por 21 aspectos esenciales del ser, trabajados
+              desde la experiencia: Cada día, una activación meditativa y una
+              práctica consciente para reconectar con lo sagrado, transformar tu
+              mirada y empezar a habitar tu vida desde una nueva vibración.
             </p>
             <div
               id="main-purchase-btn"

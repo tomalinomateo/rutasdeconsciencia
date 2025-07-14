@@ -28,10 +28,14 @@ export default function StatsSection() {
               className="text-3xl font-bold text-white mb-2"
               style={fontClass.title}
             >
-              21 temáticas
+              <p>21 temáticas </p>
+              <p>esenciales</p>
             </h3>
             <p className="text-white text-lg" style={fontClass.text}>
-              que abren puertas hacia una nueva comprensión de tu realidad
+              Puertas hacia una nueva comprensión
+            </p>
+            <p className="text-white text-lg" style={fontClass.text}>
+              de tu ser y tu realidad.
             </p>
           </div>
           <div className="text-center">
@@ -42,10 +46,14 @@ export default function StatsSection() {
               className="text-3xl font-bold text-white mb-2 whitespace-nowrap"
               style={fontClass.title}
             >
-              21 meditaciones
+              <p>21 activaciones </p>
+              <p>meditativas</p>
             </h3>
             <p className="text-white text-lg" style={fontClass.text}>
-              para transformar tu mundo interno.
+              Para reprogramar tu mundo interno
+            </p>
+            <p className="text-white text-lg" style={fontClass.text}>
+              y elevar tu frecuencia.
             </p>
           </div>
           <div className="text-center">
@@ -56,10 +64,13 @@ export default function StatsSection() {
               className="text-3xl font-bold text-white mb-2"
               style={fontClass.title}
             >
-              Guía práctica de ejercicios
+              Guía práctica de integración
             </h3>
             <p className="text-white text-lg" style={fontClass.text}>
-              para manifestar ese cambio interno en tu realidad.
+              Ejercicios conscientes para manifestar
+            </p>
+            <p className="text-white text-lg" style={fontClass.text}>
+              el cambio en tu vida cotidiana.
             </p>
           </div>
         </div>

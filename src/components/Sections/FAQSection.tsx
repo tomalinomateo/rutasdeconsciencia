@@ -101,6 +101,12 @@ export default function FAQSection() {
                     className={`ml-4 transition-transform duration-200 ${
                       isOpen ? "rotate-90" : "rotate-0"
                     }`}
+                    style={{
+                      color:
+                        currentStyle.id === "champagne-beige"
+                          ? "#fef3c7"
+                          : "#fde68a",
+                    }}
                   >
                     <svg
                       width="18"

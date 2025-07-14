@@ -4,6 +4,7 @@ import { Moon, Sparkles } from "lucide-react";
 import PurchaseButton from "../PurchaseButton";
 import { useStyle } from "@/context/StyleContext";
 import { useFontClass } from "@/hooks/useFontClass";
+import { useTitleFont, TITLE_FONT_COMBOS } from "@/context/TitleFontContext";
 
 interface HeaderProps {
   scrollToSection: (sectionId: string) => void;
@@ -13,6 +14,8 @@ interface HeaderProps {
 export default function Header({ scrollToSection }: HeaderProps) {
   const { currentStyle } = useStyle();
   const { fontClass } = useFontClass();
+  const { titleFontCombo } = useTitleFont();
+  const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
 
   // Función para obtener el color de los iconos
   const getIconColor = () => {
@@ -42,12 +45,20 @@ export default function Header({ scrollToSection }: HeaderProps) {
               />
             </div>
             <div className="flex flex-col">
-              <span
-                className="text-lg sm:text-2xl font-bold text-white"
+              <div
+                className="text-lg sm:text-2xl font-bold text-white flex flex-wrap items-end whitespace-nowrap"
                 style={fontClass.title}
               >
-                Alquimia Raiz
-              </span>
+                <span style={{ fontFamily: `var(--font-${fontA})` }}>
+                  Alquimia
+                </span>
+                <span
+                  className="ml-1"
+                  style={{ fontFamily: `var(--font-${fontB})` }}
+                >
+                  Raiz
+                </span>
+              </div>
               <div
                 className="flex items-center gap-1 -mt-1"
                 style={fontClass.text}

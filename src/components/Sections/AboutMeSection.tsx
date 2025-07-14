@@ -109,10 +109,10 @@ export default function AboutMeSection() {
               </p>
             </div>
             <div
-              className={`mt-8 p-6 rounded-2xl border`}
+              className="mt-8 p-6 rounded-2xl border-2 bg-white/10 backdrop-blur-sm"
               style={{
-                backgroundColor: `${currentStyle.colors.primary}20`,
-                borderColor: `${currentStyle.colors.primary}40`,
+                borderColor:
+                  currentStyle.id === "champagne-beige" ? "#fef3c7" : "#fde68a",
               }}
             >
               <p

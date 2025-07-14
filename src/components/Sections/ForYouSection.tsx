@@ -20,10 +20,12 @@ export default function ForYouSection() {
   const forYouItems = [
     "Hace tiempo querés meditar pero te cuesta sostener la práctica por tu cuenta o no sabés por dónde empezar.",
     "Estás atravesando un momento de transformación, confusión o búsqueda interna, y necesitás un espacio que te acompañe con amor y claridad.",
-    "Sentís que hay partes de vos que aún no pudiste integrar del todo (tu historia, tus emociones, tu sensibilidad, tu sombra, tu deseo…) y querés herramientas para mirarlas desde una nueva perspectiva.",
+    "Sentís que ciertas creencias o formas de entender tu vida te limitan o te repiten patrones que ya no querés.",
+    "Querés liberar esas ideas antiguas para abrirte a nuevas perspectivas que te permitan vivir con más libertad y autenticidad.",
     "Querés reconectar con tu alma sin desconectarte de tu humanidad.",
     "Deseas habitarte con más presencia y profundidad. Incluyendo cuerpo, emoción, energía y mente.",
-    "Buscas herramientas para tu autoconocimiento.",
+    "Buscás caminos conscientes para tu autoconocimiento y transformación.",
+    "Estás listo/a para soltar viejas historias y construir una visión renovada de vos mismo/a y del mundo que te rodea.",
   ];
 
   return (

@@ -10,7 +10,7 @@ const tematicas = [
   "Vinculo Paterno",
   "Vinculo con mi niño",
   "Auto-Vinculo",
-  "Vinculo con lxs demas",
+  "Vinculo con los demas",
   "Vinculo con mi cuerpo",
   "Creencias",
   "Emociones",
@@ -42,12 +42,6 @@ export default function TematicasSection() {
         >
           Mapa del recorrido
         </h2>
-        <p
-          className={`text-xl text-center mb-8 ${currentStyle.colors.secondary} opacity-90`}
-          style={fontClass.text}
-        >
-          Un viaje guiado para resignificar, integrar y renacer
-        </p>
         <Spiral />
       </div>
     </section>

@@ -55,13 +55,13 @@ const tematicas = [
   "Vinculo Paterno",
   "Vinculo con mi niño",
   "Auto-Vinculo",
-  "Vinculo con lxs demas",
-  "Vinculo con mi cuerpo",
+  "Vinculo con los demas",
+  "Mi cuerpo",
   "Creencias",
   "Emociones",
   "El miedo",
   "La sombra",
-  "El propio brillo",
+  "Mi propio brillo",
   "El deseo",
   "Energia sexual y creativa",
   "La abundancia",
@@ -72,7 +72,6 @@ const tematicas = [
   "La gratitud",
   "Amor incondicional",
   "Morir para renacer",
-  "La transformacion",
 ];
 
 interface Point {
@@ -114,7 +113,7 @@ const TopicMap = () => {
   // Función para ajustar coordenadas Y según dispositivo
   const getAdjustedPoints = () => {
     const basePoints: Point[] = [
-      { x: 130, y: isMobile ? 35 : 65 }, // 1 - ajustado para desktop
+      { x: 130, y: isMobile ? 70 : 65 }, // 1 - ajustado para desktop
       { x: 430, y: 80 }, // 2
       { x: 730, y: 98 }, // 3
       { x: 1000, y: 110 }, // 4
@@ -237,13 +236,13 @@ const TopicMap = () => {
             textLines = splitText(tematicas[i]);
           } else if (i === 13) {
             // Temática 14: "La abundancia"
-            textLines = ["La", "Abundancia"];
+            textLines = ["La", "abundancia"];
           } else if (i === 15) {
             // Temática 16: "Guias y seres desencarnados"
             textLines = ["Guias y", "seres"];
           } else if (i === 19) {
             // Temática 20: "Amor incondicional"
-            textLines = ["Amor"];
+            textLines = ["El amor"];
           } else {
             textLines = splitText(tematicas[i]);
           }
@@ -303,7 +302,7 @@ const TopicMap = () => {
                 fill="black"
                 fontFamily={fontClass.text.fontFamily}
                 fontWeight="600"
-                style={{ fontStretch: "condensed" }}
+                style={{ fontStretch: "condensed", fontStyle: "italic" }}
               >
                 {textLines[0]}
               </text>
@@ -323,7 +322,7 @@ const TopicMap = () => {
                   fill="black"
                   fontFamily={fontClass.text.fontFamily}
                   fontWeight="600"
-                  style={{ fontStretch: "condensed" }}
+                  style={{ fontStretch: "condensed", fontStyle: "italic" }}
                 >
                   {line}
                 </text>
