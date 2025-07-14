@@ -1,15 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useStyle } from "@/context/StyleContext";
 import { useFontClass } from "@/hooks/useFontClass";
-import { useTitleFont, TITLE_FONT_COMBOS } from "@/context/TitleFontContext";
 
 export default function AboutCourseSection() {
   const { currentStyle } = useStyle();
   const { fontClass } = useFontClass();
-  const { titleFontCombo } = useTitleFont();
-  const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
 
   // Función para obtener el color del título principal
   const getTitleColor = () => {

@@ -1,7 +1,6 @@
 "use client";
 
 import SpacialBackground from "@/components/SpacialBackground";
-import Header from "@/components/Sections/Header";
 import HeroSection from "@/components/Sections/HeroSection";
 import StatsSection from "@/components/Sections/StatsSection";
 import AboutCourseSection from "@/components/Sections/AboutCourseSection";

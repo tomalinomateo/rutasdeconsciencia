@@ -9,7 +9,7 @@ interface StyleColors {
   background: string;
 }
 
-interface StyleOption {
+export interface StyleOption {
   id: string;
   name: string;
   description: string;
