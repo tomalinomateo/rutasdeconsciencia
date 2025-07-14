@@ -10,15 +10,6 @@ const fontLabels = [
   ["Dancing Script", "Libre Baskerville"],
 ];
 
-const fontClassMap: Record<string, string> = {
-  lora: "font-[var(--font-lora)]",
-  parisienne: "font-[var(--font-parisienne)]",
-  italianno: "font-[var(--font-italianno)]",
-  alegreyaSC: "font-[var(--font-alegreyasc)]",
-  dancingscript: "font-[var(--font-dancingscript)]",
-  librebaskerville: "font-[var(--font-librebaskerville)]",
-};
-
 export default function TitleFontSelector() {
   const { titleFontCombo, setTitleFontCombo } = useTitleFont();
   const [isOpen, setIsOpen] = useState(false);

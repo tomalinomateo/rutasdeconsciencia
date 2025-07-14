@@ -10,14 +10,6 @@ export default function StickyHeader() {
   const { fontClass } = useFontClass();
   const { titleFontCombo } = useTitleFont();
   const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
-  const fontClassMap = {
-    lora: "font-[var(--font-lora)]",
-    parisienne: "font-[var(--font-parisienne)]",
-    italianno: "font-[var(--font-italianno)]",
-    alegreyaSC: "font-[var(--font-alegreyasc)]",
-    dancingscript: "font-[var(--font-dancingscript)]",
-    librebaskerville: "font-[var(--font-librebaskerville)]",
-  };
 
   useEffect(() => {
     const title = document.getElementById("alquimia-title");
@@ -42,7 +34,9 @@ export default function StickyHeader() {
     }
     return () => {
       titleObserver.disconnect();
-      btnObserver && btnObserver.disconnect();
+      if (btnObserver) {
+        btnObserver.disconnect();
+      }
     };
   }, []);
 

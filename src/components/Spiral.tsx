@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useStyle } from "@/context/StyleContext";
 import { useFontClass } from "@/hooks/useFontClass";
 import {
   Flower,

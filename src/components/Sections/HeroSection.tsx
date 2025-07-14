@@ -17,14 +17,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
   const { fontClass } = useFontClass();
   const { titleFontCombo } = useTitleFont();
   const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
-  const fontClassMap = {
-    lora: "font-[var(--font-lora)]",
-    parisienne: "font-[var(--font-parisienne)]",
-    italianno: "font-[var(--font-italianno)]",
-    alegreyaSC: "font-[var(--font-alegreyasc)]",
-    dancingscript: "font-[var(--font-dancingscript)]",
-    librebaskerville: "font-[var(--font-librebaskerville)]",
-  };
+
   return (
     <section className="relative overflow-hidden z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">

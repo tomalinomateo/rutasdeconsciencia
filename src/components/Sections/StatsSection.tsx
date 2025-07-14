@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, BookOpen, Sparkles } from "lucide-react";
+import { BookOpen, Sparkles } from "lucide-react";
 import { useStyle } from "@/context/StyleContext";
 import { useFontClass } from "@/hooks/useFontClass";
 
