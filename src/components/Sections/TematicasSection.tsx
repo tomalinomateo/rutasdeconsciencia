@@ -29,31 +29,25 @@ const tematicas = [
   "Morir para renacer",
 ];
 
-// Agrupa las temáticas en filas de 2 para mejor UX
-const getRowsForDesktop = (items: string[]) => {
-  const rows = [];
-  for (let i = 0; i < items.length; i += 2) {
-    rows.push([
-      { idx: i, text: items[i] },
-      { idx: i + 1, text: items[i + 1] },
-    ]);
-  }
-  return rows;
-};
-
 export default function TematicasSection() {
   const { currentStyle } = useStyle();
   const { fontClass } = useFontClass();
 
   return (
     <section className="py-5 relative z-10 overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative space-y-24">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative space-y-8">
         <h2
-          className={`text-4xl font-bold text-center mb-12 ${currentStyle.colors.primary}`}
+          className={`text-4xl font-bold text-center mb-4 ${currentStyle.colors.primary}`}
           style={fontClass.title}
         >
-          Temáticas
+          Mapa del recorrido
         </h2>
+        <p
+          className={`text-xl text-center mb-8 ${currentStyle.colors.secondary} opacity-90`}
+          style={fontClass.text}
+        >
+          Un viaje guiado para resignificar, integrar y renacer
+        </p>
         <Spiral />
       </div>
     </section>
