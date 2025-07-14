@@ -42,6 +42,12 @@ export default function TematicasSection() {
         >
           Mapa del recorrido
         </h2>
+        <p
+          className="text-white text-center italic text-lg mb-8"
+          style={fontClass.text}
+        >
+          21 puertas hacia tu universo interno
+        </p>
         <Spiral />
       </div>
     </section>
