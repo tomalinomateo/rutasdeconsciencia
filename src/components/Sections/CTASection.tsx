@@ -2,19 +2,12 @@
 
 import { motion } from "framer-motion";
 import PurchaseButton from "../PurchaseButton";
-import { useStyle } from "@/context/StyleContext";
-import { useFontClass } from "@/hooks/useFontClass";
+import { defaultStyles } from "@/lib/defaultStyles";
 
 export default function CTASection() {
-  const { currentStyle } = useStyle();
-  const { fontClass } = useFontClass();
-
   // Función para obtener el color del título principal
   const getTitleColor = () => {
-    if (currentStyle.id === "silver-forest") {
-      return "text-emerald-400";
-    }
-    return currentStyle.colors.primary;
+    return defaultStyles.colors.primary;
   };
 
   return (
@@ -27,13 +20,13 @@ export default function CTASection() {
         >
           <h2
             className={`text-4xl font-bold ${getTitleColor()} mb-4`}
-            style={fontClass.title}
+            style={defaultStyles.title}
           >
             ¿Listo para activar tu alquimia?
           </h2>
           <p
             className="text-xl text-white mb-8 opacity-90"
-            style={fontClass.text}
+            style={defaultStyles.text}
           >
             Cada paso hacia adentro es también un paso hacia tu libertad.
           </p>
@@ -41,7 +34,10 @@ export default function CTASection() {
             <div className="flex justify-center">
               <PurchaseButton variant="primary" size="large" />
             </div>
-            <p className="text-lg text-white opacity-90" style={fontClass.text}>
+            <p
+              className="text-lg text-white opacity-90"
+              style={defaultStyles.text}
+            >
               Reconectá con lo sagrado en lo cotidiano
               <br />
               <span className="text-sm text-white opacity-75">

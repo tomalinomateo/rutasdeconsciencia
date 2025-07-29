@@ -1,30 +1,22 @@
 "use client";
 
 import { Moon, Sparkles, Instagram } from "lucide-react";
-import { useStyle } from "@/context/StyleContext";
-import { useFontClass } from "@/hooks/useFontClass";
-import { useTitleFont, TITLE_FONT_COMBOS } from "@/context/TitleFontContext";
+import { defaultStyles } from "@/lib/defaultStyles";
 
 export default function Footer() {
-  const { currentStyle } = useStyle();
-  const { fontClass } = useFontClass();
-  const { titleFontCombo } = useTitleFont();
-  const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
+  const [fontA, fontB] = [
+    defaultStyles.titleFonts.alquimia,
+    defaultStyles.titleFonts.raiz,
+  ];
 
   // Función para obtener el color de los iconos
   const getIconColor = () => {
-    if (currentStyle.id === "silver-forest") {
-      return "text-emerald-400";
-    }
-    return currentStyle.colors.secondary;
+    return defaultStyles.colors.secondary;
   };
 
   // Función para obtener el color del accent (para sparkles)
   const getAccentColor = () => {
-    if (currentStyle.id === "silver-forest") {
-      return "text-green-300";
-    }
-    return currentStyle.colors.accent;
+    return defaultStyles.colors.accent;
   };
 
   return (
@@ -39,8 +31,8 @@ export default function Footer() {
             />
           </div>
           <div
-            className={`text-2xl font-bold flex flex-wrap items-end whitespace-nowrap ${currentStyle.colors.secondary}`}
-            style={fontClass.title}
+            className={`text-2xl font-bold flex flex-wrap items-end whitespace-nowrap ${defaultStyles.colors.secondary}`}
+            style={defaultStyles.title}
           >
             <span style={{ fontFamily: `var(--font-${fontA})` }}>Alquimia</span>
             <span
@@ -55,7 +47,7 @@ export default function Footer() {
         {/* Tagline */}
         <p
           className="text-white mb-2 max-w-md mx-auto text-lg"
-          style={fontClass.text}
+          style={defaultStyles.text}
         >
           Integrando lo humano y lo divino en vos
         </p>
@@ -66,7 +58,7 @@ export default function Footer() {
             href="https://www.instagram.com/retornoalorigen__/"
             target="_blank"
             rel="noopener noreferrer"
-            className={`text-slate-400 hover:${currentStyle.colors.primary} transition-colors`}
+            className={`text-slate-400 hover:${defaultStyles.colors.primary} transition-colors`}
             aria-label="Instagram"
           >
             <Instagram className="h-6 w-6" />
@@ -91,7 +83,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-slate-700/50 pt-2">
-          <p className="text-slate-500 text-sm" style={fontClass.text}>
+          <p className="text-slate-500 text-sm" style={defaultStyles.text}>
             © 2025 - Alquimia Raiz - @retornoalorigen__
           </p>
         </div>

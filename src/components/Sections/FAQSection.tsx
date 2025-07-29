@@ -2,33 +2,16 @@
 
 import { useState, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useStyle } from "@/context/StyleContext";
-import { useFontClass } from "@/hooks/useFontClass";
-import { StyleOption } from "@/context/StyleContext";
-
-interface FontClass {
-  title: React.CSSProperties;
-  text: React.CSSProperties;
-  all: React.CSSProperties;
-}
+import { defaultStyles } from "@/lib/defaultStyles";
 
 interface FAQItemProps {
   faq: { question: string; answer: string };
   index: number;
   isOpen: boolean;
   onToggle: (index: number) => void;
-  currentStyle: StyleOption;
-  fontClass: FontClass;
 }
 
-function FAQItem({
-  faq,
-  index,
-  isOpen,
-  onToggle,
-  currentStyle,
-  fontClass,
-}: FAQItemProps) {
+function FAQItem({ faq, index, isOpen, onToggle }: FAQItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
 
@@ -53,10 +36,10 @@ function FAQItem({
         onClick={() => onToggle(index)}
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${index}`}
-        style={fontClass.title}
+        style={defaultStyles.title}
       >
         <span
-          className={`text-xl font-semibold ${currentStyle.colors.secondary}`}
+          className={`text-xl font-semibold ${defaultStyles.colors.secondary}`}
         >
           {faq.question}
         </span>
@@ -65,8 +48,7 @@ function FAQItem({
             isOpen ? "rotate-90" : "rotate-0"
           }`}
           style={{
-            color:
-              currentStyle.id === "champagne-beige" ? "#fef3c7" : "#fde68a",
+            color: "#fef3c7",
           }}
         >
           <svg
@@ -100,7 +82,7 @@ function FAQItem({
             style={{ overflow: "hidden" }}
           >
             <div ref={contentRef} className="px-6 pb-5">
-              <p className="text-white text-lg" style={fontClass.text}>
+              <p className="text-white text-lg" style={defaultStyles.text}>
                 {faq.answer}
               </p>
             </div>
@@ -112,16 +94,11 @@ function FAQItem({
 }
 
 export default function FAQSection() {
-  const { currentStyle } = useStyle();
-  const { fontClass } = useFontClass();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   // Función para obtener el color del título principal
   const getTitleColor = () => {
-    if (currentStyle.id === "silver-forest") {
-      return "text-emerald-400";
-    }
-    return currentStyle.colors.primary;
+    return defaultStyles.colors.primary;
   };
 
   const faqItems = [
@@ -155,16 +132,16 @@ export default function FAQSection() {
   return (
     <section id="faq" className="py-20 relative z-10 overflow-hidden">
       <div
-        className={`absolute top-24 left-24 w-36 h-36 bg-gradient-radial ${currentStyle.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-35 pointer-events-none`}
+        className={`absolute top-24 left-24 w-36 h-36 bg-gradient-radial ${defaultStyles.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-35 pointer-events-none`}
       ></div>
       <div
-        className={`absolute bottom-24 right-24 w-32 h-32 bg-gradient-radial ${currentStyle.colors.accent}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
+        className={`absolute bottom-24 right-24 w-32 h-32 bg-gradient-radial ${defaultStyles.colors.accent}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
       ></div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2
             className={`text-4xl font-bold ${getTitleColor()} mb-4`}
-            style={fontClass.title}
+            style={defaultStyles.title}
           >
             Preguntas frecuentes
           </h2>
@@ -180,8 +157,6 @@ export default function FAQSection() {
               onToggle={(index) =>
                 setOpenIndex(openIndex === index ? null : index)
               }
-              currentStyle={currentStyle}
-              fontClass={fontClass}
             />
           ))}
         </div>

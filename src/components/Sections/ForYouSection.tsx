@@ -2,19 +2,16 @@
 
 import { motion } from "framer-motion";
 import PurchaseButton from "../PurchaseButton";
-import { useStyle } from "@/context/StyleContext";
-import { useFontClass } from "@/hooks/useFontClass";
+import { defaultStyles } from "@/lib/defaultStyles";
+
 
 export default function ForYouSection() {
-  const { currentStyle } = useStyle();
-  const { fontClass } = useFontClass();
+  
+  
 
   // Función para obtener el color del título principal
   const getTitleColor = () => {
-    if (currentStyle.id === "silver-forest") {
-      return "text-emerald-400";
-    }
-    return currentStyle.colors.primary;
+    return defaultStyles.colors.primary;
   };
 
   const forYouItems = [
@@ -31,16 +28,16 @@ export default function ForYouSection() {
   return (
     <section id="para-ti" className="pt-8 pb-20 relative z-10 overflow-hidden">
       <div
-        className={`absolute top-16 left-16 w-36 h-36 bg-gradient-radial ${currentStyle.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
+        className={`absolute top-16 left-16 w-36 h-36 bg-gradient-radial ${defaultStyles.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
       ></div>
       <div
-        className={`absolute bottom-16 right-16 w-28 h-28 bg-gradient-radial ${currentStyle.colors.accent}/10 to-transparent rounded-full blur-xl opacity-45 pointer-events-none`}
+        className={`absolute bottom-16 right-16 w-28 h-28 bg-gradient-radial ${defaultStyles.colors.accent}/10 to-transparent rounded-full blur-xl opacity-45 pointer-events-none`}
       ></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2
             className={`text-4xl font-bold ${getTitleColor()} mb-4`}
-            style={fontClass.title}
+            style={defaultStyles.title}
           >
             Esta propuesta es para vos si:
           </h2>
@@ -59,8 +56,8 @@ export default function ForYouSection() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`text-white text-base leading-relaxed list-disc ml-6 marker:${currentStyle.colors.accent}`}
-                style={fontClass.text}
+                className={`text-white text-base leading-relaxed list-disc ml-6 marker:${defaultStyles.colors.accent}`}
+                style={defaultStyles.text}
               >
                 {item}
               </motion.li>
@@ -72,12 +69,12 @@ export default function ForYouSection() {
         <div className="text-center">
           <div className="bg-black/50 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-gray-600/30">
             <h3
-              className={`text-2xl font-bold ${currentStyle.colors.primary} mb-4`}
-              style={fontClass.title}
+              className={`text-2xl font-bold ${defaultStyles.colors.primary} mb-4`}
+              style={defaultStyles.title}
             >
               ¿Te identificás con alguno de estos puntos?
             </h3>
-            <p className="text-white mb-6 text-lg" style={fontClass.text}>
+            <p className="text-white mb-6 text-lg" style={defaultStyles.text}>
               Entonces este recorrido está hecho para vos.
             </p>
             <div className="flex justify-center">

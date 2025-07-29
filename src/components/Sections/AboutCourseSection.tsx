@@ -1,40 +1,33 @@
 "use client";
 
-import { useStyle } from "@/context/StyleContext";
-import { useFontClass } from "@/hooks/useFontClass";
+import { defaultStyles } from "@/lib/defaultStyles";
 
 export default function AboutCourseSection() {
-  const { currentStyle } = useStyle();
-  const { fontClass } = useFontClass();
-
   // Función para obtener el color del título principal
   const getTitleColor = () => {
-    if (currentStyle.id === "silver-forest") {
-      return "text-emerald-400";
-    }
-    return currentStyle.colors.primary;
+    return defaultStyles.colors.primary;
   };
 
   return (
     <section id="curso" className="py-20 relative z-10 overflow-hidden">
       <div
-        className={`absolute top-10 right-10 w-32 h-32 bg-gradient-radial ${currentStyle.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
+        className={`absolute top-10 right-10 w-32 h-32 bg-gradient-radial ${defaultStyles.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
       ></div>
       <div
-        className={`absolute bottom-10 left-10 w-24 h-24 bg-gradient-radial ${currentStyle.colors.accent}/10 to-transparent rounded-full blur-xl opacity-50 pointer-events-none`}
+        className={`absolute bottom-10 left-10 w-24 h-24 bg-gradient-radial ${defaultStyles.colors.accent}/10 to-transparent rounded-full blur-xl opacity-50 pointer-events-none`}
       ></div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2
             className={`text-3xl sm:text-3xl lg:text-4xl font-bold ${getTitleColor()} mb-4 flex flex-wrap items-end justify-center whitespace-nowrap`}
-            style={fontClass.title}
+            style={defaultStyles.title}
           >
             <span>¿Qué es Alquimia Raiz </span>
             <span>?</span>
           </h2>
           <div
             className="space-y-8 text-white text-lg leading-relaxed"
-            style={fontClass.text}
+            style={defaultStyles.text}
           >
             <p className="text-xl font-bold mb-8">
               Una experiencia de autoexploración que busca reprogramar tu

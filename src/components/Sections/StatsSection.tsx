@@ -1,19 +1,16 @@
 "use client";
 
 import { BookOpen, Sparkles } from "lucide-react";
-import { useStyle } from "@/context/StyleContext";
-import { useFontClass } from "@/hooks/useFontClass";
+import { defaultStyles } from "@/lib/defaultStyles";
+
 
 export default function StatsSection() {
-  const { currentStyle } = useStyle();
-  const { fontClass } = useFontClass();
+  
+  
 
   // Función para obtener el color de los iconos
   const getIconColor = () => {
-    if (currentStyle.id === "silver-forest") {
-      return "text-emerald-400";
-    }
-    return currentStyle.colors.secondary;
+    return defaultStyles.colors.secondary;
   };
 
   return (
@@ -26,15 +23,15 @@ export default function StatsSection() {
             </div>
             <h3
               className="text-3xl font-bold text-white mb-2"
-              style={fontClass.title}
+              style={defaultStyles.title}
             >
               <p>21 temáticas </p>
               <p>esenciales</p>
             </h3>
-            <p className="text-white text-lg" style={fontClass.text}>
+            <p className="text-white text-lg" style={defaultStyles.text}>
               Puertas hacia una nueva comprensión
             </p>
-            <p className="text-white text-lg" style={fontClass.text}>
+            <p className="text-white text-lg" style={defaultStyles.text}>
               de tu ser y tu realidad.
             </p>
           </div>
@@ -44,15 +41,15 @@ export default function StatsSection() {
             </div>
             <h3
               className="text-3xl font-bold text-white mb-2 whitespace-nowrap"
-              style={fontClass.title}
+              style={defaultStyles.title}
             >
               <p>21 activaciones </p>
               <p>meditativas</p>
             </h3>
-            <p className="text-white text-lg" style={fontClass.text}>
+            <p className="text-white text-lg" style={defaultStyles.text}>
               Para reprogramar tu mundo interno
             </p>
-            <p className="text-white text-lg" style={fontClass.text}>
+            <p className="text-white text-lg" style={defaultStyles.text}>
               y elevar tu frecuencia.
             </p>
           </div>
@@ -62,14 +59,14 @@ export default function StatsSection() {
             </div>
             <h3
               className="text-3xl font-bold text-white mb-2"
-              style={fontClass.title}
+              style={defaultStyles.title}
             >
               Guía práctica de integración
             </h3>
-            <p className="text-white text-lg" style={fontClass.text}>
+            <p className="text-white text-lg" style={defaultStyles.text}>
               Ejercicios conscientes para manifestar
             </p>
-            <p className="text-white text-lg" style={fontClass.text}>
+            <p className="text-white text-lg" style={defaultStyles.text}>
               el cambio en tu vida cotidiana.
             </p>
           </div>

@@ -2,9 +2,9 @@
 
 import { Moon, Sparkles } from "lucide-react";
 import PurchaseButton from "../PurchaseButton";
-import { useStyle } from "@/context/StyleContext";
-import { useFontClass } from "@/hooks/useFontClass";
-import { useTitleFont, TITLE_FONT_COMBOS } from "@/context/TitleFontContext";
+import { defaultStyles } from "@/lib/defaultStyles";
+
+
 
 interface HeaderProps {
   scrollToSection: (sectionId: string) => void;
@@ -12,25 +12,19 @@ interface HeaderProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Header({ scrollToSection }: HeaderProps) {
-  const { currentStyle } = useStyle();
-  const { fontClass } = useFontClass();
-  const { titleFontCombo } = useTitleFont();
-  const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
+  
+  
+  
+  const [fontA, fontB] = [defaultStyles.titleFonts.alquimia, defaultStyles.titleFonts.raiz];
 
   // Función para obtener el color de los iconos
   const getIconColor = () => {
-    if (currentStyle.id === "silver-forest") {
-      return "text-emerald-400";
-    }
-    return currentStyle.colors.secondary;
+    return defaultStyles.colors.secondary;
   };
 
   // Función para obtener el color del accent (para sparkles)
   const getAccentColor = () => {
-    if (currentStyle.id === "silver-forest") {
-      return "text-green-300";
-    }
-    return currentStyle.colors.accent;
+    return defaultStyles.colors.accent;
   };
 
   return (
@@ -47,7 +41,7 @@ export default function Header({ scrollToSection }: HeaderProps) {
             <div className="flex flex-col">
               <div
                 className="text-lg sm:text-2xl font-bold text-white flex flex-wrap items-end whitespace-nowrap"
-                style={fontClass.title}
+                style={defaultStyles.title}
               >
                 <span style={{ fontFamily: `var(--font-${fontA})` }}>
                   Alquimia
@@ -61,7 +55,7 @@ export default function Header({ scrollToSection }: HeaderProps) {
               </div>
               <div
                 className="flex items-center gap-1 -mt-1"
-                style={fontClass.text}
+                style={defaultStyles.text}
               >
                 <span className="text-xs sm:text-sm text-gray-400">by</span>
                 <a

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useFontClass } from "@/hooks/useFontClass";
+import { defaultStyles } from "@/lib/defaultStyles";
 import {
   Flower,
   Mountain,
@@ -79,7 +79,6 @@ interface Point {
 }
 
 const TopicMap = () => {
-  const { fontClass } = useFontClass();
   const textColor = "oklch(96.2% 0.059 95.617)";
 
   const width = 1200;
@@ -285,7 +284,7 @@ const TopicMap = () => {
                 textAnchor="middle"
                 fontSize={numberFontSize}
                 fill="oklch(96.2% 0.059 95.617)"
-                fontFamily={fontClass.title.fontFamily}
+                fontFamily={defaultStyles.title.fontFamily}
                 fontWeight="600"
                 style={{ fontStretch: "condensed" }}
               >
@@ -299,7 +298,7 @@ const TopicMap = () => {
                 textAnchor="middle"
                 fontSize={textFontSize}
                 fill="black"
-                fontFamily={fontClass.text.fontFamily}
+                fontFamily={defaultStyles.text.fontFamily}
                 fontWeight="600"
                 style={{ fontStretch: "condensed", fontStyle: "italic" }}
               >
@@ -319,7 +318,7 @@ const TopicMap = () => {
                   textAnchor="middle"
                   fontSize={textFontSize}
                   fill="black"
-                  fontFamily={fontClass.text.fontFamily}
+                  fontFamily={defaultStyles.text.fontFamily}
                   fontWeight="600"
                   style={{ fontStretch: "condensed", fontStyle: "italic" }}
                 >

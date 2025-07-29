@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useFontClass } from "@/hooks/useFontClass";
-import { useTitleFont, TITLE_FONT_COMBOS } from "@/context/TitleFontContext";
+import { defaultStyles } from "@/lib/defaultStyles";
 import PurchaseButton from "./PurchaseButton";
 
 export default function StickyHeader() {
   const [showHeader, setShowHeader] = useState(false);
   const [showButton, setShowButton] = useState(false);
-  const { fontClass } = useFontClass();
-  const { titleFontCombo } = useTitleFont();
-  const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
+  const [fontA, fontB] = [
+    defaultStyles.titleFonts.alquimia,
+    defaultStyles.titleFonts.raiz,
+  ];
 
   useEffect(() => {
     const title = document.getElementById("alquimia-title");
@@ -54,7 +54,7 @@ export default function StickyHeader() {
             <div className="flex flex-col">
               <span
                 className="text-2xl text-yellow-200 flex items-end gap-1"
-                style={fontClass.title}
+                style={defaultStyles.title}
               >
                 <span style={{ fontFamily: `var(--font-${fontA})` }}>
                   Alquimia

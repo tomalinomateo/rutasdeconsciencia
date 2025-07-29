@@ -9,9 +9,6 @@ import {
   Libre_Baskerville,
 } from "next/font/google";
 import "./globals.css";
-import { StyleProvider } from "@/context/StyleContext";
-import { FontProvider } from "@/context/FontContext";
-import { TitleFontProvider } from "@/context/TitleFontContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,11 +76,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${parisienne.variable} ${italianno.variable} ${alegreyaSC.variable} ${dancingScript.variable} ${libreBaskerville.variable} antialiased text-lg`}
       >
-        <FontProvider>
-          <StyleProvider>
-            <TitleFontProvider>{children}</TitleFontProvider>
-          </StyleProvider>
-        </FontProvider>
+        {children}
       </body>
     </html>
   );

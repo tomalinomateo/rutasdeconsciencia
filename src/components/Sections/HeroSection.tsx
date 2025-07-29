@@ -3,9 +3,7 @@
 import { motion } from "framer-motion";
 // Importaciones removidas - no se utilizan en este componente
 import PurchaseButton from "../PurchaseButton";
-import { useStyle } from "@/context/StyleContext";
-import { useFontClass } from "@/hooks/useFontClass";
-import { useTitleFont, TITLE_FONT_COMBOS } from "@/context/TitleFontContext";
+import { defaultStyles } from "@/lib/defaultStyles";
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -13,10 +11,10 @@ interface HeroSectionProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function HeroSection({ scrollToSection }: HeroSectionProps) {
-  const { currentStyle } = useStyle();
-  const { fontClass } = useFontClass();
-  const { titleFontCombo } = useTitleFont();
-  const [fontA, fontB] = TITLE_FONT_COMBOS[titleFontCombo];
+  const [fontA, fontB] = [
+    defaultStyles.titleFonts.alquimia,
+    defaultStyles.titleFonts.raiz,
+  ];
 
   return (
     <section className="relative overflow-hidden z-10">
@@ -30,8 +28,8 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
             <div className="mb-3 w-full">
               <h1
                 id="alquimia-title"
-                className={`text-5xl sm:text-6xl lg:text-7xl ${currentStyle.colors.primary} flex flex-wrap items-end text-left whitespace-nowrap`}
-                style={fontClass.title}
+                className={`text-5xl sm:text-6xl lg:text-7xl ${defaultStyles.colors.primary} flex flex-wrap items-end text-left whitespace-nowrap`}
+                style={defaultStyles.title}
               >
                 <span style={{ fontFamily: `var(--font-${fontA})` }}>
                   Alquimia
@@ -59,20 +57,20 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
               </span>
             </div>
             <h2
-              className={`text-2xl lg:text-3xl font-medium mb-1 ${currentStyle.colors.primary}`}
-              style={fontClass.text}
+              className={`text-2xl lg:text-3xl font-medium mb-1 ${defaultStyles.colors.primary}`}
+              style={defaultStyles.text}
             >
               21 días para reprogramar por dentro y transformar por fuera
             </h2>
             <h3
-              className={`text-xl font-medium mb-4 ${currentStyle.colors.primary}`}
-              style={fontClass.text}
+              className={`text-xl font-medium mb-4 ${defaultStyles.colors.primary}`}
+              style={defaultStyles.text}
             >
               Guiados por la meditacion y ejercicios conscientes
             </h3>
             <p
               className="text-xl text-white font-medium mb-4"
-              style={fontClass.text}
+              style={defaultStyles.text}
             >
               Un viaje profundo por 21 aspectos esenciales del ser, trabajados
               desde la experiencia: Cada día, una activación meditativa y una
@@ -100,7 +98,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
             className="relative"
           >
             <div
-              className={`w-full h-96 bg-gradient-to-br ${currentStyle.colors.background} rounded-3xl shadow-2xl flex items-center justify-center relative overflow-hidden`}
+              className={`w-full h-96 bg-gradient-to-br ${defaultStyles.colors.background} rounded-3xl shadow-2xl flex items-center justify-center relative overflow-hidden`}
             >
               <img
                 src="/ceremonia2.jpeg"

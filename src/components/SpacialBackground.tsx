@@ -1,24 +1,23 @@
-import { useStyle } from "@/context/StyleContext";
+import { defaultStyles } from "@/lib/defaultStyles";
 
 export default function SpacialBackground() {
-  const { currentStyle } = useStyle();
   return (
     <div className="fixed inset-0 z-0">
       {/* Fondo espacial con galaxias */}
       <div className="absolute inset-0 bg-black pointer-events-none">
         {/* Galaxias laterales */}
         <div
-          className={`absolute top-1/4 left-0 w-80 h-80 bg-gradient-radial ${currentStyle.colors.primary}/15 via-${currentStyle.colors.accent}/10 to-transparent rounded-full blur-galaxy opacity-25 animate-rotate-slow`}
+          className={`absolute top-1/4 left-0 w-80 h-80 bg-gradient-radial ${defaultStyles.colors.primary}/15 via-${defaultStyles.colors.accent}/10 to-transparent rounded-full blur-galaxy opacity-25 animate-rotate-slow`}
         ></div>
         <div
-          className={`absolute bottom-1/3 right-0 w-72 h-72 bg-gradient-radial ${currentStyle.colors.accent}/12 via-${currentStyle.colors.primary}/6 to-transparent rounded-full blur-galaxy opacity-30 animate-rotate-slow`}
+          className={`absolute bottom-1/3 right-0 w-72 h-72 bg-gradient-radial ${defaultStyles.colors.accent}/12 via-${defaultStyles.colors.primary}/6 to-transparent rounded-full blur-galaxy opacity-30 animate-rotate-slow`}
         ></div>
         {/* Sutil resplandor lateral */}
         <div
-          className={`absolute top-1/6 left-1/12 w-64 h-64 bg-gradient-radial ${currentStyle.colors.primary}/10 via-${currentStyle.colors.accent}/5 to-transparent rounded-full blur-galaxy opacity-10 animate-rotate-slow`}
+          className={`absolute top-1/6 left-1/12 w-64 h-64 bg-gradient-radial ${defaultStyles.colors.primary}/10 via-${defaultStyles.colors.accent}/5 to-transparent rounded-full blur-galaxy opacity-10 animate-rotate-slow`}
         ></div>
         <div
-          className={`absolute bottom-1/6 right-1/12 w-56 h-56 bg-gradient-radial ${currentStyle.colors.primary}/10 via-${currentStyle.colors.accent}/5 to-transparent rounded-full blur-galaxy opacity-10 animate-rotate-slow`}
+          className={`absolute bottom-1/6 right-1/12 w-56 h-56 bg-gradient-radial ${defaultStyles.colors.primary}/10 via-${defaultStyles.colors.accent}/5 to-transparent rounded-full blur-galaxy opacity-10 animate-rotate-slow`}
         ></div>
       </div>
 
@@ -36,10 +35,10 @@ export default function SpacialBackground() {
       {/* Nebulosas flotantes laterales */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className={`absolute top-0 left-0 w-32 h-32 bg-gradient-to-br ${currentStyle.colors.primary}/6 to-${currentStyle.colors.accent}/2 rounded-full blur-nebula opacity-35 animate-float`}
+          className={`absolute top-0 left-0 w-32 h-32 bg-gradient-to-br ${defaultStyles.colors.primary}/6 to-${defaultStyles.colors.accent}/2 rounded-full blur-nebula opacity-35 animate-float`}
         ></div>
         <div
-          className={`absolute top-1/4 right-0 w-40 h-40 bg-gradient-to-bl ${currentStyle.colors.accent}/5 to-${currentStyle.colors.primary}/1 rounded-full blur-nebula opacity-30 animate-float`}
+          className={`absolute top-1/4 right-0 w-40 h-40 bg-gradient-to-bl ${defaultStyles.colors.accent}/5 to-${defaultStyles.colors.primary}/1 rounded-full blur-nebula opacity-30 animate-float`}
         ></div>
       </div>
 
