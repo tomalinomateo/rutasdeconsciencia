@@ -20,9 +20,8 @@ export default function PurchaseButton({
   text = "Quiero comenzar el viaje",
 }: PurchaseButtonProps) {
   const handlePurchase = () => {
-    // Aquí se integrará el sistema de pagos
-    console.log("Iniciando proceso de compra...");
-    alert("¡Próximamente se habilitaran las inscripciones!");
+    // Redirigir a la página de checkout
+    window.location.href = "/checkout";
   };
 
   const baseClasses = `font-bold transition-all duration-300 flex items-center justify-center space-x-2 rounded-full`;

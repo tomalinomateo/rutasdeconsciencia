@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { defaultStyles } from "@/lib/defaultStyles";
 
 export default function AboutMeSection() {
@@ -39,10 +40,12 @@ export default function AboutMeSection() {
             transition={{ duration: 0.8 }}
           >
             <div className="w-full h-96 rounded-3xl shadow-2xl shadow-rose-900/50 relative overflow-hidden">
-              <img
+              <Image
                 src="/cruz.jpeg"
                 alt="María Cruz - Alquimia Raiz"
-                className="w-full h-full object-cover object-center rounded-3xl"
+                fill
+                className="object-cover object-center rounded-3xl"
+                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>

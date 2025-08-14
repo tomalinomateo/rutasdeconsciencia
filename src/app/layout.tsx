@@ -74,7 +74,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${parisienne.variable} ${italianno.variable} ${alegreyaSC.variable} ${dancingScript.variable} ${libreBaskerville.variable} antialiased text-lg`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${parisienne.variable} ${italianno.variable} ${alegreyaSC.variable} ${dancingScript.variable} ${libreBaskerville.variable} antialiased text-lg bg-black text-white`}
       >
         {children}
       </body>

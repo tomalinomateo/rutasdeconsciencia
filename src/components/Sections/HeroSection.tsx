@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 // Importaciones removidas - no se utilizan en este componente
 import PurchaseButton from "../PurchaseButton";
 import { defaultStyles } from "@/lib/defaultStyles";
@@ -100,11 +101,13 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
             <div
               className={`w-full h-96 bg-gradient-to-br ${defaultStyles.colors.background} rounded-3xl shadow-2xl flex items-center justify-center relative overflow-hidden`}
             >
-              <img
+              <Image
                 src="/ceremonia2.jpeg"
                 alt="María Cruz - Rutas de Consciencia"
-                className="w-full h-full object-cover object-center rounded-3xl"
+                fill
+                className="object-cover object-center rounded-3xl"
                 style={{ objectPosition: "center 75%" }}
+                priority
               />
             </div>
           </motion.div>
