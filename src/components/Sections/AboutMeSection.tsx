@@ -41,7 +41,7 @@ export default function AboutMeSection() {
           >
             <div className="w-full h-96 rounded-3xl shadow-2xl shadow-rose-900/50 relative overflow-hidden">
               <Image
-                src="/cruz.jpeg"
+                src="/images/cruz.jpeg"
                 alt="María Cruz - Alquimia Raiz"
                 fill
                 className="object-cover object-center rounded-3xl"

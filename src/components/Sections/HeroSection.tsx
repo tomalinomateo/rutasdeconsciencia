@@ -102,7 +102,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
               className={`w-full h-96 bg-gradient-to-br ${defaultStyles.colors.background} rounded-3xl shadow-2xl flex items-center justify-center relative overflow-hidden`}
             >
               <Image
-                src="/ceremonia2.jpeg"
+                src="/images/ceremonia2.jpeg"
                 alt="María Cruz - Rutas de Consciencia"
                 fill
                 className="object-cover object-center rounded-3xl"

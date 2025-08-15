@@ -7,7 +7,7 @@ export default function BackgroundTopSection() {
     <div className="w-full h-screen relative z-10 overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/background-top.jpeg"
+          src="/images/background-top.jpeg"
           alt="Background top decoration"
           fill
           className="object-cover"
