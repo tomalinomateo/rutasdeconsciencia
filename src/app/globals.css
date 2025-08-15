@@ -56,6 +56,63 @@
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
+
+  /* ===== GLOBAL AESTHETIC VARIABLES ===== */
+
+  /* ===== TYPOGRAPHY COLORS ===== */
+  --title-primary: #fff3db; /* Main titles - cream color */
+  --title-secondary: #fef3c7; /* Alternative titles - lighter cream */
+  --text-primary: #fff3db; /* Main body text - cream */
+  --text-secondary: #d1d5db; /* Secondary text - light gray */
+  --text-muted: #9ca3af; /* Muted text - darker gray */
+
+  /* ===== BUTTON COLORS ===== */
+  --button-primary-bg: #fff3db; /* Primary button background - cream */
+  --button-primary-text: #000000; /* Primary button text - black */
+  --button-primary-hover: #fef3c7; /* Primary button hover - lighter cream */
+
+  --button-secondary-bg: #f59e0b; /* Secondary button background - amber */
+  --button-secondary-text: #ffffff; /* Secondary button text - white */
+  --button-secondary-hover: #d97706; /* Secondary button hover - darker amber */
+
+  --button-accent-bg: #fbbf24; /* Accent button background - yellow */
+  --button-accent-text: #000000; /* Accent button text - black */
+  --button-accent-hover: #f59e0b; /* Accent button hover - amber */
+
+  /* ===== BACKGROUND COLORS ===== */
+  --bg-primary: #000000; /* Main background - black */
+  --bg-secondary: #111827; /* Secondary background - dark blue-gray */
+  --bg-tertiary: #0f172a; /* Tertiary background - darker blue-gray */
+
+  /* ===== BORDER COLORS ===== */
+  --border-primary: rgba(
+    255,
+    243,
+    219,
+    0.1
+  ); /* Primary borders - cream subtle */
+  --border-secondary: rgba(245, 158, 11, 0.3); /* Secondary borders - amber */
+  --border-light: rgba(
+    255,
+    243,
+    219,
+    0.05
+  ); /* Light borders - very subtle cream */
+
+  /* ===== STATUS COLORS ===== */
+  --success: #10b981; /* Success - green */
+  --error: #ef4444; /* Error - red */
+  --warning: #f59e0b; /* Warning - amber */
+
+  /* ===== GRADIENT COLORS ===== */
+  --gradient-primary: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  --gradient-secondary: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  --gradient-glow: linear-gradient(
+    135deg,
+    #fbbf24 0%,
+    #ec4899 50%,
+    transparent 100%
+  );
 }
 
 html,
@@ -65,9 +122,124 @@ body {
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Forum, serif, Arial, Helvetica, sans-serif;
-  @apply bg-black text-white;
+  color: var(--primary-text);
+  font-family: "Garet", sans-serif;
+  @apply bg-black;
+}
+
+/* ===== GLOBAL AESTHETIC CLASSES ===== */
+
+/* ===== TYPOGRAPHY CLASSES ===== */
+.title-primary {
+  color: var(--title-primary);
+}
+
+.title-secondary {
+  color: var(--title-secondary);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* ===== BUTTON CLASSES ===== */
+.btn-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--button-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--button-secondary-hover);
+}
+
+.btn-accent {
+  background-color: var(--button-accent-bg);
+  color: var(--button-accent-text);
+  transition: background-color 0.3s ease;
+}
+
+.btn-accent:hover {
+  background-color: var(--button-accent-hover);
+}
+
+/* ===== BACKGROUND CLASSES ===== */
+.bg-primary {
+  background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+/* ===== BORDER CLASSES ===== */
+.border-primary {
+  border-color: var(--border-primary);
+}
+
+.border-secondary {
+  border-color: var(--border-secondary);
+}
+
+.border-light {
+  border-color: var(--border-light);
+}
+
+/* ===== STATUS CLASSES ===== */
+.text-success {
+  color: var(--success);
+}
+
+.text-error {
+  color: var(--error);
+}
+
+.text-warning {
+  color: var(--warning);
+}
+
+/* ===== GRADIENT CLASSES ===== */
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.gradient-secondary {
+  background: var(--gradient-secondary);
+}
+
+.gradient-glow {
+  background: var(--gradient-glow);
+}
+
+/* Typography classes */
+.font-the-seasons {
+  font-family: "The Seasons", "Times New Roman", serif;
+}
+
+.font-garet {
+  font-family: "Garet", sans-serif;
 }
 
 /* Estilos espaciales personalizados */
@@ -233,96 +405,45 @@ body {
   background: rgba(255, 255, 255, 0.5);
 }
 
-@keyframes orbit-behind {
+@keyframes orbit-single {
   0% {
-    transform: translateX(-30px) translateY(0px);
+    transform: translateX(-25px) translateY(-35px);
     opacity: 1;
   }
   12.5% {
-    transform: translateX(-15px) translateY(-15px);
+    transform: translateX(-15px) translateY(-25px);
     opacity: 1;
   }
   25% {
-    transform: translateX(0px) translateY(-20px);
+    transform: translateX(-5px) translateY(-15px);
     opacity: 1;
   }
   37.5% {
-    transform: translateX(15px) translateY(-15px);
-    opacity: 1;
-  }
-  40% {
-    transform: translateX(20px) translateY(-10px);
-    opacity: 0;
-  }
-  50% {
-    transform: translateX(30px) translateY(0px);
-    opacity: 0;
-  }
-  60% {
-    transform: translateX(20px) translateY(10px);
-    opacity: 0;
-  }
-  75% {
-    transform: translateX(0px) translateY(20px);
-    opacity: 0;
-  }
-  87.5% {
-    transform: translateX(-15px) translateY(15px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(-30px) translateY(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes orbit-front {
-  0% {
-    transform: translateX(-30px) translateY(0px);
-    opacity: 0;
-  }
-  12.5% {
-    transform: translateX(-15px) translateY(-15px);
-    opacity: 0;
-  }
-  25% {
-    transform: translateX(0px) translateY(-20px);
-    opacity: 0;
-  }
-  37.5% {
-    transform: translateX(15px) translateY(-15px);
-    opacity: 0;
-  }
-  40% {
-    transform: translateX(20px) translateY(-10px);
+    transform: translateX(5px) translateY(-15px);
     opacity: 1;
   }
   50% {
-    transform: translateX(30px) translateY(0px);
+    transform: translateX(15px) translateY(-25px);
     opacity: 1;
   }
-  60% {
-    transform: translateX(20px) translateY(10px);
+  62.5% {
+    transform: translateX(25px) translateY(-35px);
     opacity: 1;
   }
   75% {
-    transform: translateX(0px) translateY(20px);
+    transform: translateX(15px) translateY(-25px);
     opacity: 1;
   }
   87.5% {
-    transform: translateX(-15px) translateY(15px);
+    transform: translateX(5px) translateY(-15px);
     opacity: 1;
   }
   100% {
-    transform: translateX(-30px) translateY(0px);
+    transform: translateX(-25px) translateY(-35px);
     opacity: 0;
   }
 }
 
-.animate-orbit-behind {
-  animation: orbit-behind 6s linear infinite;
-}
-
-.animate-orbit-front {
-  animation: orbit-front 6s linear infinite;
+.animate-orbit-single {
+  animation: orbit-single 4s linear infinite;
 }

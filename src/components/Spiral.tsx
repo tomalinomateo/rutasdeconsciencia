@@ -22,10 +22,12 @@ import {
   HeartHandshake,
   Infinity,
   Sprout,
+  Lock,
+  Play,
 } from "lucide-react";
 
-// Iconos de Lucide React para cada temática
-const icons = [
+// Iconos de Lucide React para cada temática (cuando están desbloqueados)
+const unlockedIcons = [
   Flower, // 1. Vínculo materno
   Mountain, // 2. Vínculo paterno
   Baby, // 3. Vínculo con mi niño
@@ -247,12 +249,16 @@ const TopicMap = () => {
 
           return (
             <g key={i} transform={`translate(${point.x}, ${point.y})`}>
-              {/* Círculo de fondo beige */}
+              {/* Círculo de fondo */}
               <circle
                 cx="0"
                 cy="0"
                 r={circleRadius}
-                fill="oklch(96.2% 0.059 95.617)"
+                fill={
+                  i === 0 ? "oklch(85% 0.1 120)" : "oklch(96.2% 0.059 95.617)"
+                } // Verde claro para capítulo 1
+                stroke={i === 0 ? "oklch(60% 0.2 120)" : "none"} // Borde verde para capítulo 1
+                strokeWidth={i === 0 ? 3 : 0}
               />
 
               {/* Icono arriba */}
@@ -269,11 +275,14 @@ const TopicMap = () => {
                     alignItems: "center",
                   }}
                 >
-                  {React.createElement(icons[i], {
-                    size: isMobile ? 60 : 20,
-                    strokeWidth: 2,
-                    color: "black",
-                  })}
+                  {React.createElement(
+                    i === 0 ? Play : Lock, // Capítulo 1 con Play, resto con Lock
+                    {
+                      size: isMobile ? 60 : 20,
+                      strokeWidth: 2,
+                      color: i === 0 ? "green" : "gray", // Verde para disponible, gris para bloqueado
+                    }
+                  )}
                 </div>
               </foreignObject>
 
