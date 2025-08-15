@@ -1,5 +1,51 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "The Seasons";
+  src: url("/Demo_Fonts/Fontspring-DEMO-theseasons-reg.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "The Seasons";
+  src: url("/Demo_Fonts/Fontspring-DEMO-theseasons-bd.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "The Seasons";
+  src: url("/Demo_Fonts/Fontspring-DEMO-theseasons-it.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Garet";
+  src: url("/garet/Garet-Book.woff2") format("woff2"),
+    url("/garet/Garet-Book.woff") format("woff"),
+    url("/garet/Garet-Book.ttf") format("truetype"),
+    url("/garet/Garet-Book.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Garet";
+  src: url("/garet/Garet-Heavy.woff2") format("woff2"),
+    url("/garet/Garet-Heavy.woff") format("woff"),
+    url("/garet/Garet-Heavy.ttf") format("truetype"),
+    url("/garet/Garet-Heavy.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;

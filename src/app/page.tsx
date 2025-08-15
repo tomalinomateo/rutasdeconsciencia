@@ -12,6 +12,7 @@ import Footer from "@/components/Sections/Footer";
 import StickyHeader from "@/components/StickyHeader";
 import TematicasSection from "@/components/Sections/TematicasSection";
 import TransformationSection from "@/components/Sections/TransformationSection";
+import BackgroundTopSection from "@/components/Sections/BackgroundTopSection";
 
 export default function LandingPage() {
   const scrollToSection = (sectionId: string) => {
@@ -23,8 +24,9 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen relative">
+      <BackgroundTopSection />
       <SpacialBackground />
-      <StickyHeader />
+      {/* <StickyHeader /> */}
       <HeroSection scrollToSection={scrollToSection} />
       <StatsSection />
       <AboutCourseSection />
