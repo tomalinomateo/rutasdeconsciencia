@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-export default function BackgroundTopSection() {
+export default function IntroductionSection() {
   return (
     <div className="w-full h-screen relative z-10 overflow-hidden">
       <div className="absolute inset-0">
