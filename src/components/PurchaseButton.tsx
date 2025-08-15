@@ -50,7 +50,10 @@ export default function PurchaseButton({
       whileTap={{ scale: 0.98 }}
       onClick={handlePurchase}
       className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
-      style={{ ...defaultStyles.text, fontWeight: 700 }}
+      style={{
+        fontFamily: '"The Seasons", "Times New Roman", serif',
+        fontWeight: 700,
+      }}
     >
       {showIcon && <CreditCard className="h-5 w-5 text-red-500" />}
       <span>{text}</span>

@@ -73,6 +73,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/the-seasons/Fontspring-DEMO-theseasons-reg.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/the-seasons/Fontspring-DEMO-theseasons-it.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${parisienne.variable} ${italianno.variable} ${alegreyaSC.variable} ${dancingScript.variable} ${libreBaskerville.variable} antialiased text-lg bg-black text-white`}
       >

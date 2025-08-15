@@ -9,7 +9,7 @@
     format("opentype");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -18,7 +18,7 @@
     format("opentype");
   font-weight: bold;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -27,7 +27,7 @@
     format("opentype");
   font-weight: normal;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 /* Garet Font */
@@ -106,6 +106,63 @@ body {
   box-shadow: var(--tw-shadow);
 }
 
+/* Animaciones personalizadas para efectos de botón */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: translateX(-30px) translateY(0px);
+    z-index: 10;
+  }
+  12.5% {
+    transform: translateX(-15px) translateY(-15px);
+    z-index: 10;
+  }
+  25% {
+    transform: translateX(0px) translateY(-20px);
+    z-index: 10;
+  }
+  37.5% {
+    transform: translateX(15px) translateY(-15px);
+    z-index: 10;
+  }
+  50% {
+    transform: translateX(30px) translateY(0px);
+    z-index: 30;
+  }
+  62.5% {
+    transform: translateX(15px) translateY(15px);
+    z-index: 30;
+  }
+  75% {
+    transform: translateX(0px) translateY(20px);
+    z-index: 30;
+  }
+  87.5% {
+    transform: translateX(-15px) translateY(15px);
+    z-index: 30;
+  }
+  100% {
+    transform: translateX(-30px) translateY(0px);
+    z-index: 10;
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-orbit {
+  animation: orbit 6s linear infinite;
+}
+
 /* Animaciones espaciales */
 @keyframes twinkle {
   0%,
@@ -174,4 +231,98 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes orbit-behind {
+  0% {
+    transform: translateX(-30px) translateY(0px);
+    opacity: 1;
+  }
+  12.5% {
+    transform: translateX(-15px) translateY(-15px);
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(0px) translateY(-20px);
+    opacity: 1;
+  }
+  37.5% {
+    transform: translateX(15px) translateY(-15px);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(20px) translateY(-10px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(30px) translateY(0px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(20px) translateY(10px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(0px) translateY(20px);
+    opacity: 0;
+  }
+  87.5% {
+    transform: translateX(-15px) translateY(15px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-30px) translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes orbit-front {
+  0% {
+    transform: translateX(-30px) translateY(0px);
+    opacity: 0;
+  }
+  12.5% {
+    transform: translateX(-15px) translateY(-15px);
+    opacity: 0;
+  }
+  25% {
+    transform: translateX(0px) translateY(-20px);
+    opacity: 0;
+  }
+  37.5% {
+    transform: translateX(15px) translateY(-15px);
+    opacity: 0;
+  }
+  40% {
+    transform: translateX(20px) translateY(-10px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(30px) translateY(0px);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(20px) translateY(10px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(0px) translateY(20px);
+    opacity: 1;
+  }
+  87.5% {
+    transform: translateX(-15px) translateY(15px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-30px) translateY(0px);
+    opacity: 0;
+  }
+}
+
+.animate-orbit-behind {
+  animation: orbit-behind 6s linear infinite;
+}
+
+.animate-orbit-front {
+  animation: orbit-front 6s linear infinite;
 }
