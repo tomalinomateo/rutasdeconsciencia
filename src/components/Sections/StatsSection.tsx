@@ -1,73 +1,47 @@
 "use client";
 
-import { BookOpen, Sparkles } from "lucide-react";
-import { defaultStyles } from "@/lib/defaultStyles";
-
-
 export default function StatsSection() {
-  
-  
-
-  // Función para obtener el color de los iconos
-  const getIconColor = () => {
-    return defaultStyles.colors.secondary;
-  };
-
   return (
-    <section className="py-16 relative z-10 overflow-hidden">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center items-center">
-          <div className="text-center">
-            <div className="flex justify-center mb-4">
-              <Sparkles className={`h-12 w-12 ${getIconColor()}`} />
-            </div>
-            <h3
-              className="text-3xl font-bold text-white mb-2"
-              style={defaultStyles.title}
-            >
-              <p>21 temáticas </p>
-              <p>esenciales</p>
+    <section id="stats" className="py-20 relative z-10 overflow-hidden">
+      <div
+        className={`absolute top-10 left-10 w-32 h-32 bg-yellow-200/10 rounded-full blur-2xl opacity-40 pointer-events-none`}
+      ></div>
+      <div
+        className={`absolute bottom-10 right-10 w-24 h-24 bg-amber-100/10 rounded-full blur-xl opacity-50 pointer-events-none`}
+      ></div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="space-y-4">
+            <h3 className="text-3xl font-bold text-primary mb-2 font-the-seasons">
+              21
             </h3>
-            <p className="text-white text-lg" style={defaultStyles.text}>
-              Puertas hacia una nueva comprensión
-            </p>
-            <p className="text-white text-lg" style={defaultStyles.text}>
-              de tu ser y tu realidad.
+            <p className="text-primary text-lg font-garet">Días de práctica</p>
+            <p className="text-primary text-lg font-garet">
+              Transformación profunda
             </p>
           </div>
-          <div className="text-center">
-            <div className="flex justify-center mb-4">
-              <BookOpen className={`h-12 w-12 ${getIconColor()}`} />
-            </div>
-            <h3
-              className="text-3xl font-bold text-white mb-2 whitespace-nowrap"
-              style={defaultStyles.title}
-            >
-              <p>21 activaciones </p>
-              <p>meditativas</p>
+
+          <div className="space-y-4">
+            <h3 className="text-3xl font-bold text-primary mb-2 whitespace-nowrap font-the-seasons">
+              1000+
             </h3>
-            <p className="text-white text-lg" style={defaultStyles.text}>
-              Para reprogramar tu mundo interno
+            <p className="text-primary text-lg font-garet">
+              Personas transformadas
             </p>
-            <p className="text-white text-lg" style={defaultStyles.text}>
-              y elevar tu frecuencia.
+            <p className="text-primary text-lg font-garet">
+              Comunidad creciente
             </p>
           </div>
-          <div className="text-center">
-            <div className="flex justify-center mb-4">
-              <Sparkles className={`h-12 w-12 ${getIconColor()}`} />
-            </div>
-            <h3
-              className="text-3xl font-bold text-white mb-2"
-              style={defaultStyles.title}
-            >
-              Guía práctica de integración
+
+          <div className="space-y-4">
+            <h3 className="text-3xl font-bold text-primary mb-2 font-the-seasons">
+              100%
             </h3>
-            <p className="text-white text-lg" style={defaultStyles.text}>
-              Ejercicios conscientes para manifestar
+            <p className="text-primary text-lg font-garet">
+              Garantía de satisfacción
             </p>
-            <p className="text-white text-lg" style={defaultStyles.text}>
-              el cambio en tu vida cotidiana.
+            <p className="text-primary text-lg font-garet">
+              Resultados comprobados
             </p>
           </div>
         </div>

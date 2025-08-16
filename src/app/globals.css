@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* ===== FONT LOADING STRATEGY ===== */
+/* Smooth font loading without hiding content */
+body {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
 /* ===== FONT FAMILIES ===== */
 
 /* The Seasons Font */
@@ -9,7 +16,7 @@
     format("opentype");
   font-weight: normal;
   font-style: normal;
-  font-display: optional;
+  font-display: fallback;
 }
 
 @font-face {
@@ -18,7 +25,7 @@
     format("opentype");
   font-weight: bold;
   font-style: normal;
-  font-display: optional;
+  font-display: fallback;
 }
 
 @font-face {
@@ -27,7 +34,7 @@
     format("opentype");
   font-weight: normal;
   font-style: italic;
-  font-display: optional;
+  font-display: fallback;
 }
 
 /* Garet Font */
@@ -39,7 +46,7 @@
     url("/fonts/garet/Garet-Book.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
@@ -50,69 +57,36 @@
     url("/fonts/garet/Garet-Heavy.otf") format("opentype");
   font-weight: bold;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  /* ===== SISTEMA UNIFICADO DE COLORES ===== */
+  /* Basado en la paleta de /styles */
 
-  /* ===== GLOBAL AESTHETIC VARIABLES ===== */
+  /* Colores principales */
+  --primary-cream: #fff3db;
+  --secondary-amber: #f59e0b;
+  --accent-yellow: #fbbf24;
+  --button-locked: #fef3c7;
 
-  /* ===== TYPOGRAPHY COLORS ===== */
-  --title-primary: #fff3db; /* Main titles - cream color */
-  --title-secondary: #fef3c7; /* Alternative titles - lighter cream */
-  --text-primary: #fff3db; /* Main body text - cream */
-  --text-secondary: #d1d5db; /* Secondary text - light gray */
-  --text-muted: #9ca3af; /* Muted text - darker gray */
+  /* Colores de fondo */
+  --background-primary: #0f0f0f;
+  --background-secondary: #111827;
 
-  /* ===== BUTTON COLORS ===== */
-  --button-primary-bg: #fff3db; /* Primary button background - cream */
-  --button-primary-text: #000000; /* Primary button text - black */
-  --button-primary-hover: #fef3c7; /* Primary button hover - lighter cream */
+  /* Colores de texto */
+  --text-primary: #fff3db;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
 
-  --button-secondary-bg: #f59e0b; /* Secondary button background - amber */
-  --button-secondary-text: #ffffff; /* Secondary button text - white */
-  --button-secondary-hover: #d97706; /* Secondary button hover - darker amber */
+  /* Colores de bordes */
+  --border-primary: rgba(255, 243, 219, 0.1);
+  --border-secondary: rgba(245, 158, 11, 0.3);
 
-  --button-accent-bg: #fbbf24; /* Accent button background - yellow */
-  --button-accent-text: #000000; /* Accent button text - black */
-  --button-accent-hover: #f59e0b; /* Accent button hover - amber */
-
-  /* ===== BACKGROUND COLORS ===== */
-  --bg-primary: #000000; /* Main background - black */
-  --bg-secondary: #111827; /* Secondary background - dark blue-gray */
-  --bg-tertiary: #0f172a; /* Tertiary background - darker blue-gray */
-
-  /* ===== BORDER COLORS ===== */
-  --border-primary: rgba(
-    255,
-    243,
-    219,
-    0.1
-  ); /* Primary borders - cream subtle */
-  --border-secondary: rgba(245, 158, 11, 0.3); /* Secondary borders - amber */
-  --border-light: rgba(
-    255,
-    243,
-    219,
-    0.05
-  ); /* Light borders - very subtle cream */
-
-  /* ===== STATUS COLORS ===== */
-  --success: #10b981; /* Success - green */
-  --error: #ef4444; /* Error - red */
-  --warning: #f59e0b; /* Warning - amber */
-
-  /* ===== GRADIENT COLORS ===== */
-  --gradient-primary: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  --gradient-secondary: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  --gradient-glow: linear-gradient(
-    135deg,
-    #fbbf24 0%,
-    #ec4899 50%,
-    transparent 100%
-  );
+  /* Colores de estado */
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
 }
 
 html,
@@ -121,119 +95,14 @@ body {
 }
 
 body {
-  background: var(--background);
-  color: var(--primary-text);
-  font-family: "Garet", sans-serif;
-  @apply bg-black;
-}
-
-/* ===== GLOBAL AESTHETIC CLASSES ===== */
-
-/* ===== TYPOGRAPHY CLASSES ===== */
-.title-primary {
-  color: var(--title-primary);
-}
-
-.title-secondary {
-  color: var(--title-secondary);
-}
-
-.text-primary {
+  background: var(--background-primary);
   color: var(--text-primary);
+  font-family: "Garet", sans-serif;
 }
 
-.text-secondary {
-  color: var(--text-secondary);
-}
+/* ===== CLASES UNIFICADAS ===== */
 
-.text-muted {
-  color: var(--text-muted);
-}
-
-/* ===== BUTTON CLASSES ===== */
-.btn-primary {
-  background-color: var(--button-primary-bg);
-  color: var(--button-primary-text);
-  transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-  background-color: var(--button-primary-hover);
-}
-
-.btn-secondary {
-  background-color: var(--button-secondary-bg);
-  color: var(--button-secondary-text);
-  transition: background-color 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background-color: var(--button-secondary-hover);
-}
-
-.btn-accent {
-  background-color: var(--button-accent-bg);
-  color: var(--button-accent-text);
-  transition: background-color 0.3s ease;
-}
-
-.btn-accent:hover {
-  background-color: var(--button-accent-hover);
-}
-
-/* ===== BACKGROUND CLASSES ===== */
-.bg-primary {
-  background-color: var(--bg-primary);
-}
-
-.bg-secondary {
-  background-color: var(--bg-secondary);
-}
-
-.bg-tertiary {
-  background-color: var(--bg-tertiary);
-}
-
-/* ===== BORDER CLASSES ===== */
-.border-primary {
-  border-color: var(--border-primary);
-}
-
-.border-secondary {
-  border-color: var(--border-secondary);
-}
-
-.border-light {
-  border-color: var(--border-light);
-}
-
-/* ===== STATUS CLASSES ===== */
-.text-success {
-  color: var(--success);
-}
-
-.text-error {
-  color: var(--error);
-}
-
-.text-warning {
-  color: var(--warning);
-}
-
-/* ===== GRADIENT CLASSES ===== */
-.gradient-primary {
-  background: var(--gradient-primary);
-}
-
-.gradient-secondary {
-  background: var(--gradient-secondary);
-}
-
-.gradient-glow {
-  background: var(--gradient-glow);
-}
-
-/* Typography classes */
+/* ===== TIPOGRAFÍA ===== */
 .font-the-seasons {
   font-family: "The Seasons", "Times New Roman", serif;
 }
@@ -242,10 +111,122 @@ body {
   font-family: "Garet", sans-serif;
 }
 
-/* Estilos espaciales personalizados */
-.bg-gradient-radial {
-  background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
+/* ===== COLORES DE TEXTO ===== */
+.text-primary {
+  color: var(--text-primary) !important;
 }
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* ===== COLORES DE FONDO ===== */
+.bg-primary {
+  background-color: var(--background-primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--background-secondary) !important;
+}
+
+/* ===== COLORES DE BORDES ===== */
+.border-primary {
+  border-color: var(--border-primary) !important;
+}
+
+.border-secondary {
+  border-color: var(--border-secondary) !important;
+}
+
+/* ===== ESTADOS ===== */
+.text-success {
+  color: var(--success) !important;
+}
+
+.text-error {
+  color: var(--error) !important;
+}
+
+.text-warning {
+  color: var(--warning) !important;
+}
+
+/* ===== TOPIC CARD CLASSES ===== */
+.topic-card-active {
+  background-color: var(--primary-cream);
+  border: 2px solid var(--border-secondary);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.topic-card-active:hover {
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+}
+
+.topic-card-locked {
+  background-color: var(--button-locked);
+  border: 2px solid var(--border-secondary);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.topic-card-locked:hover {
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: scale(1.01);
+}
+
+.topic-badge-active {
+  background-color: var(--secondary-amber);
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  font-family: "Garet", sans-serif;
+}
+
+.topic-badge-locked {
+  background-color: var(--text-muted);
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  font-family: "Garet", sans-serif;
+}
+
+.topic-title {
+  color: #111827;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  font-family: "Garet", sans-serif;
+}
+
+.topic-description {
+  color: #374151;
+  font-size: 0.875rem;
+  font-family: "Garet", sans-serif;
+}
+
+.topic-lock-icon {
+  color: #111827;
+}
+
+/* ===== ESTILOS ESPACIALES ===== */
 
 /* Efectos de sombra para estrellas */
 .shadow-white {
@@ -278,63 +259,6 @@ body {
   box-shadow: var(--tw-shadow);
 }
 
-/* Animaciones personalizadas para efectos de botón */
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes orbit {
-  0% {
-    transform: translateX(-30px) translateY(0px);
-    z-index: 10;
-  }
-  12.5% {
-    transform: translateX(-15px) translateY(-15px);
-    z-index: 10;
-  }
-  25% {
-    transform: translateX(0px) translateY(-20px);
-    z-index: 10;
-  }
-  37.5% {
-    transform: translateX(15px) translateY(-15px);
-    z-index: 10;
-  }
-  50% {
-    transform: translateX(30px) translateY(0px);
-    z-index: 30;
-  }
-  62.5% {
-    transform: translateX(15px) translateY(15px);
-    z-index: 30;
-  }
-  75% {
-    transform: translateX(0px) translateY(20px);
-    z-index: 30;
-  }
-  87.5% {
-    transform: translateX(-15px) translateY(15px);
-    z-index: 30;
-  }
-  100% {
-    transform: translateX(-30px) translateY(0px);
-    z-index: 10;
-  }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
-}
-
-.animate-orbit {
-  animation: orbit 6s linear infinite;
-}
-
 /* Animaciones espaciales */
 @keyframes twinkle {
   0%,
@@ -356,25 +280,12 @@ body {
   }
 }
 
-@keyframes rotate-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .animate-twinkle {
   animation: twinkle 3s ease-in-out infinite;
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
-}
-
-.animate-rotate-slow {
-  animation: rotate-slow 20s linear infinite;
 }
 
 /* Efectos de blur más suaves */
@@ -405,45 +316,54 @@ body {
   background: rgba(255, 255, 255, 0.5);
 }
 
-@keyframes orbit-single {
-  0% {
-    transform: translateX(-25px) translateY(-35px);
-    opacity: 1;
-  }
-  12.5% {
-    transform: translateX(-15px) translateY(-25px);
-    opacity: 1;
-  }
-  25% {
-    transform: translateX(-5px) translateY(-15px);
-    opacity: 1;
-  }
-  37.5% {
-    transform: translateX(5px) translateY(-15px);
-    opacity: 1;
-  }
-  50% {
-    transform: translateX(15px) translateY(-25px);
-    opacity: 1;
-  }
-  62.5% {
-    transform: translateX(25px) translateY(-35px);
-    opacity: 1;
-  }
-  75% {
-    transform: translateX(15px) translateY(-25px);
-    opacity: 1;
-  }
-  87.5% {
-    transform: translateX(5px) translateY(-15px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-25px) translateY(-35px);
-    opacity: 0;
-  }
+/* ===== SLIDER STYLES ===== */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
 }
 
-.animate-orbit-single {
-  animation: orbit-single 4s linear infinite;
+.slider::-webkit-slider-track {
+  background: #374151;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--primary-cream);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: var(--primary-cream);
+  transform: scale(1.2);
+}
+
+.slider::-moz-range-track {
+  background: #374151;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+  border: none;
+}
+
+.slider::-moz-range-thumb {
+  background: var(--primary-cream);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+  background: var(--primary-cream);
+  transform: scale(1.2);
 }

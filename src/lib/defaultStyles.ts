@@ -1,35 +1,56 @@
-// Estilos por defecto basados en la configuración actual
+// Sistema unificado de estilos basado en la paleta de /styles
 export const defaultStyles = {
-  // Estilo actual: "champagne-beige"
+  // Paleta de colores unificada
   colors: {
-    primary: "text-amber-200",
-    secondary: "text-yellow-200",
-    accent: "text-yellow-400",
-    background: "from-amber-100/20 via-transparent to-yellow-200/20",
+    // Colores principales
+    primary: "text-[#fff3db]", // Primary Cream
+    secondary: "text-[#f59e0b]", // Secondary Amber
+    accent: "text-[#fbbf24]", // Accent Yellow
+    locked: "text-[#fef3c7]", // Button Locked
+
+    // Colores de fondo
+    background: "bg-[#0f0f0f]", // Background principal
+    backgroundSecondary: "bg-[#111827]", // Background secundario
+
+    // Colores de botones
+    buttonPrimary: "bg-[#fff3db] text-black",
+    buttonSecondary: "bg-[#f59e0b] text-white",
+    buttonLocked: "bg-[#fef3c7] text-black",
+
+    // Colores de bordes
+    borderPrimary: "border-[rgba(255,243,219,0.1)]",
+    borderSecondary: "border-[rgba(245,158,11,0.3)]",
   },
 
-  // Fuente actual: "forum"
-  font: {
-    family: "Forum",
-    fallback: "serif",
+  // Sistema de fuentes unificado
+  fonts: {
+    primary: "font-the-seasons", // The Seasons para títulos
+    secondary: "font-garet", // Garet para texto
   },
 
-  // Combinación de títulos actual: 0 (["lora", "parisienne"])
-  titleFonts: {
-    alquimia: "lora",
-    raiz: "parisienne",
-  },
-
-  // Estilos de texto
+  // Estilos de texto unificados
   text: {
-    fontFamily: "Forum, serif",
+    title: "font-the-seasons text-[#fff3db]",
+    subtitle: "font-garet text-[#fff3db]",
+    body: "font-garet text-[#fff3db]",
+    caption: "font-garet text-gray-400",
   },
 
-  title: {
-    fontFamily: "var(--font-lora), serif",
+  // Estilos de botones unificados
+  buttons: {
+    primary:
+      "bg-[#fff3db] text-black hover:bg-[#fef3c7] transition-colors duration-300",
+    secondary:
+      "bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300",
+    ghost:
+      "bg-transparent text-[#fff3db] hover:bg-[#fff3db]/10 transition-colors duration-300",
+    text: "bg-transparent text-[#fff3db] hover:bg-[#fff3db]/5 transition-colors duration-300",
   },
 
-  titleSecondary: {
-    fontFamily: "var(--font-parisienne), serif",
+  // Estilos de fondos unificados
+  backgrounds: {
+    primary: "bg-[#0f0f0f]",
+    secondary: "bg-[#111827]",
+    card: "bg-gray-800/50 border border-gray-700",
   },
 };

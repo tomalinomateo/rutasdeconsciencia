@@ -3,32 +3,23 @@
 import { defaultStyles } from "@/lib/defaultStyles";
 
 export default function AboutCourseSection() {
-  // Función para obtener el color del título principal
-  const getTitleColor = () => {
-    return defaultStyles.colors.primary;
-  };
-
   return (
     <section id="curso" className="py-20 relative z-10 overflow-hidden">
       <div
-        className={`absolute top-10 right-10 w-32 h-32 bg-gradient-radial ${defaultStyles.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
+        className={`absolute top-10 right-10 w-32 h-32 bg-amber-100/10 rounded-full blur-2xl opacity-40 pointer-events-none`}
       ></div>
       <div
-        className={`absolute bottom-10 left-10 w-24 h-24 bg-gradient-radial ${defaultStyles.colors.accent}/10 to-transparent rounded-full blur-xl opacity-50 pointer-events-none`}
+        className={`absolute bottom-10 left-10 w-24 h-24 bg-yellow-200/10 rounded-full blur-xl opacity-50 pointer-events-none`}
       ></div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2
-            className={`text-3xl sm:text-3xl lg:text-4xl font-bold ${getTitleColor()} mb-4 flex flex-wrap items-end justify-center whitespace-nowrap`}
-            style={defaultStyles.title}
+            className={`text-3xl sm:text-3xl lg:text-4xl font-bold ${defaultStyles.colors.primary} mb-4 flex flex-wrap items-end justify-center whitespace-nowrap font-the-seasons`}
           >
             <span>¿Qué es Alquimia Raiz </span>
             <span>?</span>
           </h2>
-          <div
-            className="space-y-8 text-white text-lg leading-relaxed"
-            style={defaultStyles.text}
-          >
+          <div className="space-y-8 text-primary text-lg leading-relaxed font-garet">
             <p className="text-xl font-bold mb-8">
               Una experiencia de autoexploración que busca reprogramar tu
               conciencia desde el encuentro sagrado, y que manifiestes ese nuevo

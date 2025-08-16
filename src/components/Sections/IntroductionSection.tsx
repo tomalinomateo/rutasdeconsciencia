@@ -19,16 +19,19 @@ export default function IntroductionSection() {
         <div className="absolute inset-0 bg-black/35"></div>
       </div>
       <div className="absolute inset-0 flex flex-col items-center justify-start text-center pt-4">
-        <p className="text-[10px] md:text-xs mb-32 font-garet font-normal text-primary">
-          <a
-            href="https://instagram.com/retornoalorigen__"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent transition-colors duration-300"
-          >
-            @retornoalorigen__
-          </a>
-        </p>
+        <div className="text-[10px] md:text-xs mb-32 font-garet font-normal text-primary">
+          <p>Un programa de</p>
+          <p>
+            <a
+              href="https://instagram.com/retornoalorigen__"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors duration-300"
+            >
+              @retornoalorigen__
+            </a>
+          </p>
+        </div>
         <h1 className="text-[5.5rem] md:text-[8.5rem] font-normal mb-10 leading-none font-the-seasons title-primary">
           <div className="block md:inline">
             <span>Alquimia</span>
@@ -63,7 +66,7 @@ export default function IntroductionSection() {
         >
           <path
             d="M7 10L12 15L17 10"
-            stroke="var(--title-primary)"
+            stroke="#fff3db"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"

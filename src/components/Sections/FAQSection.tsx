@@ -1,163 +1,102 @@
 "use client";
 
-import { useState, useRef, useLayoutEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { defaultStyles } from "@/lib/defaultStyles";
-
-interface FAQItemProps {
-  faq: { question: string; answer: string };
-  index: number;
-  isOpen: boolean;
-  onToggle: (index: number) => void;
-}
-
-function FAQItem({ faq, index, isOpen, onToggle }: FAQItemProps) {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [contentHeight, setContentHeight] = useState(0);
-
-  useLayoutEffect(() => {
-    if (isOpen && contentRef.current) {
-      setContentHeight(contentRef.current.scrollHeight);
-    }
-  }, [isOpen]);
-
-  return (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-black/50 backdrop-blur-sm p-0 rounded-2xl shadow-lg border border-gray-600/30 overflow-hidden"
-    >
-      <button
-        className={`w-full text-left flex items-center justify-between px-6 py-5 focus:outline-none select-none ${
-          isOpen ? "" : "hover:bg-black/30"
-        }`}
-        onClick={() => onToggle(index)}
-        aria-expanded={isOpen}
-        aria-controls={`faq-answer-${index}`}
-        style={defaultStyles.title}
-      >
-        <span
-          className={`text-xl font-semibold ${defaultStyles.colors.secondary}`}
-        >
-          {faq.question}
-        </span>
-        <span
-          className={`ml-4 transition-transform duration-200 ${
-            isOpen ? "rotate-90" : "rotate-0"
-          }`}
-          style={{
-            color: "#fef3c7",
-          }}
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 6L12 10L8 14"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </button>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={`faq-answer-${index}`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: contentHeight || "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{
-              height: { duration: 0.42, ease: [0.22, 1, 0.36, 1] },
-              opacity: { duration: 0.32 },
-            }}
-            style={{ overflow: "hidden" }}
-          >
-            <div ref={contentRef} className="px-6 pb-5">
-              <p className="text-white text-lg" style={defaultStyles.text}>
-                {faq.answer}
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  // Función para obtener el color del título principal
-  const getTitleColor = () => {
-    return defaultStyles.colors.primary;
-  };
-
-  const faqItems = [
+  const faqs = [
+    {
+      question: "¿Qué incluye el programa?",
+      answer:
+        "El programa incluye 21 meditaciones guiadas, ejercicios prácticos para cada día, herramientas de integración y acceso a una comunidad de apoyo.",
+    },
     {
       question: "¿Necesito experiencia previa en meditación?",
       answer:
-        "No. Las meditaciones están pensadas para guiarte paso a paso, aunque nunca hayas meditado. Solo necesitás estar disponible para conectar con vos misma/o.",
+        "No, el programa está diseñado para principiantes y personas con experiencia. Cada meditación te guía paso a paso.",
     },
     {
-      question: "¿Puedo hacer el recorrido a mi ritmo o tiene fechas fijas?",
+      question: "¿Cuánto tiempo necesito por día?",
       answer:
-        "Podés hacerlo completamente a tu tiempo. No hay fechas obligatorias ni estructuras rígidas. Lo importante es que te permitas vivirlo desde tu propio ritmo interno.",
+        "Recomendamos dedicar entre 15-30 minutos por día para las meditaciones y ejercicios. Puedes adaptarlo a tu ritmo.",
     },
     {
-      question: "¿Los materiales tienen acceso limitado?",
+      question: "¿Tengo acceso ilimitado al contenido?",
       answer:
-        "No. Una vez adquirido, vas a tener acceso de por vida tanto a los audios como a la guía en PDF.",
+        "Sí, una vez que adquieres el programa, tienes acceso ilimitado a todo el contenido para siempre.",
     },
     {
-      question: "¿Puedo hacer las meditaciones sin hacer los ejercicios?",
+      question: "¿Hay garantía de devolución?",
       answer:
-        "Sí, aunque la integración con los ejercicios potencia muchísimo el proceso.",
-    },
-    {
-      question: "¿Puedo regalar este recorrido a otra persona?",
-      answer:
-        "Sí, ¡y es un regalo hermoso! Escribime por privado y te explico cómo hacer la compra para otra persona.",
+        "Sí, ofrecemos una garantía de 30 días. Si no estás satisfecho, te devolvemos tu dinero sin preguntas.",
     },
   ];
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <section id="faq" className="py-20 relative z-10 overflow-hidden">
       <div
-        className={`absolute top-24 left-24 w-36 h-36 bg-gradient-radial ${defaultStyles.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-35 pointer-events-none`}
+        className={`absolute top-10 right-10 w-32 h-32 bg-yellow-200/10 rounded-full blur-2xl opacity-40 pointer-events-none`}
       ></div>
       <div
-        className={`absolute bottom-24 right-24 w-32 h-32 bg-gradient-radial ${defaultStyles.colors.accent}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
+        className={`absolute bottom-10 left-10 w-24 h-24 bg-amber-100/10 rounded-full blur-xl opacity-50 pointer-events-none`}
       ></div>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
           <h2
-            className={`text-4xl font-bold ${getTitleColor()} mb-4`}
-            style={defaultStyles.title}
+            className={`text-4xl font-bold ${defaultStyles.colors.primary} mb-4 font-the-seasons`}
           >
-            Preguntas frecuentes
+            Preguntas Frecuentes
           </h2>
+          <p className="text-primary text-lg mb-8 font-garet">
+            Resolvemos las dudas más comunes sobre el programa
+          </p>
         </div>
 
-        <div className="space-y-6 mb-16">
-          {faqItems.map((faq, index) => (
-            <FAQItem
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div
               key={index}
-              faq={faq}
-              index={index}
-              isOpen={openIndex === index}
-              onToggle={(index) =>
-                setOpenIndex(openIndex === index ? null : index)
-              }
-            />
+              className="bg-gray-800/50 border border-gray-700 rounded-xl overflow-hidden"
+            >
+              <button
+                onClick={() => toggleFAQ(index)}
+                className={`w-full text-left flex items-center justify-between px-6 py-5 focus:outline-none select-none font-the-seasons transition-colors duration-200 ${
+                  openIndex === index
+                    ? "text-primary bg-gray-700/50"
+                    : "text-primary hover:bg-gray-700/30"
+                }`}
+              >
+                <span className="text-lg font-medium">{faq.question}</span>
+                <svg
+                  className={`w-5 h-5 transition-transform duration-200 ${
+                    openIndex === index ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openIndex === index && (
+                <div className="px-6 pb-5">
+                  <p className="text-primary text-lg font-garet">
+                    {faq.answer}
+                  </p>
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>

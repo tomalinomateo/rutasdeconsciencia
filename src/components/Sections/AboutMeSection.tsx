@@ -1,121 +1,86 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
 import { defaultStyles } from "@/lib/defaultStyles";
 
 export default function AboutMeSection() {
-  // Función para obtener el color del título principal
-  const getTitleColor = () => {
-    return defaultStyles.colors.primary;
-  };
-
-  // Función para obtener el color del accent
   const getAccentColor = () => {
     return defaultStyles.colors.accent;
   };
 
   return (
-    <section id="maria-cruz" className="py-10 relative z-10 overflow-hidden">
+    <section id="sobre-mi" className="py-20 relative z-10 overflow-hidden">
       <div
-        className={`absolute top-12 right-12 w-40 h-40 bg-gradient-radial ${defaultStyles.colors.primary}/10 to-transparent rounded-full blur-2xl opacity-35 pointer-events-none`}
+        className={`absolute top-10 right-10 w-32 h-32 bg-yellow-200/10 rounded-full blur-2xl opacity-40 pointer-events-none`}
       ></div>
       <div
-        className={`absolute bottom-12 left-12 w-32 h-32 bg-gradient-radial ${defaultStyles.colors.accent}/10 to-transparent rounded-full blur-2xl opacity-40 pointer-events-none`}
+        className={`absolute bottom-10 left-10 w-24 h-24 bg-amber-100/10 rounded-full blur-xl opacity-50 pointer-events-none`}
       ></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
           <h2
-            className={`text-4xl font-bold ${getTitleColor()} mb-4`}
-            style={defaultStyles.title}
+            className={`text-4xl font-bold ${defaultStyles.colors.primary} mb-4 font-the-seasons`}
           >
-            ¿Quién soy?
+            Sobre mí
           </h2>
+          <p className="text-primary text-lg mb-8 font-garet">
+            Soy una facilitadora de procesos de transformación consciente
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-6">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="w-full h-96 rounded-3xl shadow-2xl shadow-rose-900/50 relative overflow-hidden">
-              <Image
-                src="/images/cruz.jpeg"
-                alt="María Cruz - Alquimia Raiz"
-                fill
-                className="object-cover object-center rounded-3xl"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <h3
+              className={`text-2xl font-bold ${defaultStyles.colors.primary} font-the-seasons`}
+            >
+              Mi enfoque
+            </h3>
+            <p className="text-primary text-lg font-garet">
+              Creo en el poder de la meditación y las prácticas conscientes para
+              transformar nuestra realidad desde adentro hacia afuera.
+            </p>
+            <div className="space-y-4">
+              <p className="text-primary font-garet">
+                <strong className="text-primary">
+                  Mi misión es acompañarte en tu viaje de autodescubrimiento,
+                </strong>{" "}
+                proporcionándote herramientas prácticas y meditaciones guiadas
+                que te ayuden a conectar con tu esencia más profunda.
+              </p>
+              <p className="text-primary font-garet">
+                <strong className="text-primary">
+                  A través de este programa de 21 días,
+                </strong>{" "}
+                te invito a explorar las dimensiones más profundas de tu ser,
+                reprogramar patrones limitantes y abrirte a nuevas posibilidades
+                de vida.
+              </p>
             </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <h3
-                className={`text-2xl font-bold ${defaultStyles.colors.secondary}`}
-                style={defaultStyles.title}
-              >
-                María Cruz -
-              </h3>
+            <div className="flex space-x-4">
               <a
-                href="https://www.instagram.com/retornoalorigen__/"
+                href="https://instagram.com/retornoalorigen__"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-lg hover:${getAccentColor()} transition-colors text-gray-400 hover:text-current`}
-                style={defaultStyles.title}
+                className={`text-lg hover:${getAccentColor()} transition-colors text-primary hover:text-current font-the-seasons`}
               >
                 @retornoalorigen__
               </a>
             </div>
-            <div className="space-y-4 text-white" style={defaultStyles.text}>
-              <p className="text-lg">
-                Me llamo María Cruz, nací en Córdoba, Argentina, y desde muy
-                chica sentí que había una fuerza más grande que me sostenía.
-              </p>
-              <p className="text-lg">
-                Hasta que a los 19, viajando sola por primera vez, empecé a
-                incomodarme por dentro. Lo que había callado por años empezó a
-                pedirme paso. Ese fue el inicio de mi búsqueda. Mi primer gran
-                despertar.
-              </p>
-              <p className="text-lg">
-                Estudié Psicología, pero sentía que algo faltaba. Que el alma no
-                estaba incluida. Así empecé a explorar otras herramientas:{" "}
-                <strong className="text-white">
-                  Mindfulness, Reiki, Registros Akáshicos
-                </strong>
-                , y otras disciplinas que integraran lo mental, lo emocional, lo
-                corporal y lo espiritual.
-              </p>
-              <p className="text-lg">
-                Hoy acompaño procesos desde mi recorrido, mis heridas, mis
-                aprendizajes, pero sobre todo, desde mi ser.{" "}
-                <strong className="text-white">
-                  No creo en fórmulas mágicas, creo en el trabajo amoroso con
-                  uno mismo.
-                </strong>
-              </p>
-            </div>
-            <div
-              className="mt-8 p-6 rounded-2xl border-2 bg-white/10 backdrop-blur-sm"
-              style={{
-                borderColor: true ? "#fef3c7" : "#fde68a",
-              }}
+          </div>
+
+          <div className="space-y-4 text-primary font-garet">
+            <h3
+              className={`text-2xl font-bold ${defaultStyles.colors.primary} font-the-seasons`}
             >
-              <p
-                className="text-lg font-medium text-white italic"
-                style={defaultStyles.text}
-              >
-                &quot;Si hoy estás en esa búsqueda, quiero acompañarte a que vos
-                también puedas recordar quién sos.&quot;
+              Mi experiencia
+            </h3>
+            <div className="space-y-4">
+              <p className="text-lg font-medium text-primary italic font-garet">
+                "He acompañado a cientos de personas en sus procesos de
+                transformación, y he visto cómo la práctica consciente puede
+                cambiar vidas de manera profunda y duradera."
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
