@@ -12,6 +12,8 @@ type ScreenMode = "initial" | "register" | "login";
 
 export default function LoginPopup({ onClose }: LoginPopupProps) {
   const [screenMode, setScreenMode] = useState<ScreenMode>("initial");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -220,6 +222,14 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
     setMessage("");
   };
 
+  const handleSmoothTransition = (option: "register" | "login") => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      handleOptionSelect(option);
+      setIsTransitioning(false);
+    }, 200); // Half of the transition duration
+  };
+
   // Render initial screen with two buttons
   if (screenMode === "initial") {
     return (
@@ -303,7 +313,7 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
     );
   }
 
-  // Render register/login forms
+  // Render register/login forms with flip animation
   return (
     <div
       className={`fixed inset-0 backdrop-blur-md flex items-center justify-center p-4 z-50 transition-opacity duration-500 ${
@@ -320,172 +330,180 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
               : "opacity-0 translate-y-8 scale-95"
           }`}
         >
-          {/* Close Button */}
-          <button
-            onClick={handleClose}
-            className="absolute top-4 right-4 text-[#111827] hover:text-[#6b7280] transition-colors duration-200"
+          {/* Content with smooth transition */}
+          <div
+            className={`transition-all duration-400 ease-in-out ${
+              isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
+            }`}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-
-          {/* Back Button */}
-          <button
-            onClick={handleBackToInitial}
-            className="absolute top-4 left-4 text-[#111827] hover:text-[#6b7280] transition-colors duration-200"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-
-          {/* Top Graphic */}
-          <div className="flex justify-center mb-3">
-            <img
-              src="/images/sol-flashero.png"
-              alt="Sol flashero"
-              className="w-24 h-24 object-contain -m-5"
-            />
-          </div>
-
-          {/* Main Heading */}
-          <h1 className="text-lg font-bold text-center mb-2 font-the-seasons text-[#111827]">
-            {screenMode === "register"
-              ? "Comienza tu viaje de transformación"
-              : "Bienvenido de vuelta"}
-          </h1>
-
-          {/* Descriptive Text */}
-          <p className="text-center mb-4 font-garet text-[#111827] text-sm">
-            {screenMode === "register"
-              ? "Comparte tu nombre e email para continuar"
-              : "Ingresa tu contraseña para acceder"}
-          </p>
-
-          {/* Message */}
-          {message && (
-            <div
-              className={`mb-4 p-3 rounded-lg text-sm font-garet ${
-                message.includes("exitosamente") ||
-                message.includes("Bienvenido")
-                  ? "bg-green-100 text-green-800"
-                  : "bg-red-100 text-red-800"
-              }`}
-            >
-              {message}
-            </div>
-          )}
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-            {/* Email Input */}
-            <div>
-              <Input
-                label="Email"
-                type="email"
-                name="email"
-                placeholder="Tu email"
-                value={formData.email}
-                onChange={handleInputChange}
-                onBlur={handleEmailBlur}
-                required
-                variant="primary-on-cream"
-                error={errors.email}
-              />
-            </div>
-
-            {/* Name Input - Only for register */}
-            {screenMode === "register" && (
-              <div>
-                <Input
-                  label="Nombre"
-                  type="text"
-                  name="name"
-                  placeholder="Tu nombre"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  variant="primary-on-cream"
-                  error={errors.name}
-                />
-              </div>
-            )}
-
-            {/* Password Input - Only for login */}
-            {screenMode === "login" && (
-              <div>
-                <Input
-                  label="Contraseña"
-                  type="password"
-                  name="password"
-                  placeholder="Tu contraseña"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  required
-                  variant="primary-on-cream"
-                  error={errors.password}
-                />
-              </div>
-            )}
-
-            {/* Submit Button */}
+            {/* Close Button */}
             <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300 font-garet font-medium px-6 py-3 text-lg rounded-3xl focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={handleClose}
+              className="absolute top-4 right-4 text-[#111827] hover:text-[#6b7280] transition-colors duration-200 z-10"
             >
-              {isLoading
-                ? "Procesando..."
-                : screenMode === "register"
-                ? "Registrarse"
-                : "Ingresar"}
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </button>
-          </form>
 
-          {/* Switch Mode Button */}
-          <div className="text-center mt-4">
+            {/* Back Button */}
             <button
-              type="button"
-              onClick={() =>
-                handleOptionSelect(
-                  screenMode === "register" ? "login" : "register"
-                )
-              }
-              className="text-[#f59e0b] hover:text-[#d97706] font-garet text-sm transition-colors duration-200"
+              onClick={handleBackToInitial}
+              className="absolute top-4 left-4 text-[#111827] hover:text-[#6b7280] transition-colors duration-200 z-10"
             >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+
+            {/* Top Graphic */}
+            <div className="flex justify-center mb-3">
+              <img
+                src="/images/sol-flashero.png"
+                alt="Sol flashero"
+                className="w-24 h-24 object-contain -m-5"
+              />
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-lg font-bold text-center mb-2 font-the-seasons text-[#111827]">
               {screenMode === "register"
-                ? "¿Ya tienes cuenta? Ingresa aquí"
-                : "¿Nuevo aquí? Regístrate"}
-            </button>
-          </div>
+                ? "Comienza tu viaje de transformación"
+                : "Bienvenido de vuelta"}
+            </h1>
 
-          {/* Additional Info */}
-          <p className="text-xs text-center mt-4 font-garet text-[#6b7280]">
-            {screenMode === "register"
-              ? "Al registrarte, recibirás información sobre el programa y podrás acceder a contenido exclusivo."
-              : "Accede a tu contenido exclusivo y continúa tu viaje de transformación."}
-          </p>
+            {/* Descriptive Text */}
+            <p className="text-center mb-4 font-garet text-[#111827] text-sm">
+              {screenMode === "register"
+                ? "Comparte tu nombre e email para continuar"
+                : "Ingresa tu contraseña para acceder"}
+            </p>
+
+            {/* Message */}
+            {message && (
+              <div
+                className={`mb-4 p-3 rounded-lg text-sm font-garet ${
+                  message.includes("exitosamente") ||
+                  message.includes("Bienvenido")
+                    ? "bg-green-100 text-green-800"
+                    : "bg-red-100 text-red-800"
+                }`}
+              >
+                {message}
+              </div>
+            )}
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {/* Email Input */}
+              <div>
+                <Input
+                  label="Email"
+                  type="email"
+                  name="email"
+                  placeholder="Tu email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  onBlur={handleEmailBlur}
+                  required
+                  variant="primary-on-cream"
+                  error={errors.email}
+                />
+              </div>
+
+              {/* Name Input - Only for register */}
+              {screenMode === "register" && (
+                <div>
+                  <Input
+                    label="Nombre"
+                    type="text"
+                    name="name"
+                    placeholder="Tu nombre"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    variant="primary-on-cream"
+                    error={errors.name}
+                  />
+                </div>
+              )}
+
+              {/* Password Input - Only for login */}
+              {screenMode === "login" && (
+                <div>
+                  <Input
+                    label="Contraseña"
+                    type="password"
+                    name="password"
+                    placeholder="Tu contraseña"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    required
+                    variant="primary-on-cream"
+                    error={errors.password}
+                  />
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300 font-garet font-medium px-6 py-3 text-lg rounded-3xl focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading
+                  ? "Procesando..."
+                  : screenMode === "register"
+                  ? "Registrarse"
+                  : "Ingresar"}
+              </button>
+            </form>
+
+            {/* Switch Mode Button */}
+            <div className="text-center mt-4">
+              <button
+                type="button"
+                onClick={() =>
+                  handleSmoothTransition(
+                    screenMode === "register" ? "login" : "register"
+                  )
+                }
+                disabled={isTransitioning}
+                className="text-[#f59e0b] hover:text-[#d97706] font-garet text-sm transition-colors duration-200 disabled:opacity-50"
+              >
+                {screenMode === "register"
+                  ? "¿Ya tienes cuenta? Ingresa aquí"
+                  : "¿Nuevo aquí? Regístrate"}
+              </button>
+            </div>
+
+            {/* Additional Info */}
+            <p className="text-xs text-center mt-4 font-garet text-[#6b7280]">
+              {screenMode === "register"
+                ? "Al registrarte, recibirás información sobre el programa y podrás acceder a contenido exclusivo."
+                : "Accede a tu contenido exclusivo y continúa tu viaje de transformación."}
+            </p>
+          </div>
         </div>
       </div>
     </div>

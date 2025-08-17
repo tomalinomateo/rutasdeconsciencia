@@ -427,3 +427,25 @@ body {
   cursor: not-allowed !important;
   background-color: #f3f4f6 !important;
 }
+
+/* ===== FLIP CARD ANIMATION ===== */
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+}
+
+/* Flip animation container */
+.flip-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Flip animation duration */
+.duration-600 {
+  transition-duration: 600ms;
+}
