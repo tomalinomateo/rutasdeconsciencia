@@ -8,9 +8,10 @@ interface LoginPopupProps {
 }
 
 type AuthMode = "register" | "login";
+type ScreenMode = "initial" | "register" | "login";
 
 export default function LoginPopup({ onClose }: LoginPopupProps) {
-  const [mode, setMode] = useState<AuthMode>("register");
+  const [screenMode, setScreenMode] = useState<ScreenMode>("initial");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -74,20 +75,23 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
   };
 
   const validateName = (name: string): string => {
-    if (mode === "register" && !name.trim()) {
+    if (screenMode === "register" && !name.trim()) {
       return "Me gustaría saber con quién conecto 💫";
     }
-    if (mode === "register" && name.trim().length < 2) {
+    if (screenMode === "register" && name.trim().length < 2) {
       return "Tu nombre debe tener al menos 2 letras ✨";
     }
-    if (mode === "register" && !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name.trim())) {
+    if (
+      screenMode === "register" &&
+      !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name.trim())
+    ) {
       return "Solo letras y espacios en tu nombre por favor 🌟";
     }
     return "";
   };
 
   const validatePassword = (password: string): string => {
-    if (mode === "login" && !password.trim()) {
+    if (screenMode === "login" && !password.trim()) {
       return "Ingresa tu contraseña ✨";
     }
     return "";
@@ -110,7 +114,7 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
   };
 
   const handleEmailBlur = async () => {
-    if (mode === "register" && formData.email.trim()) {
+    if (screenMode === "register" && formData.email.trim()) {
       const emailError = validateEmail(formData.email);
       if (!emailError) {
         try {
@@ -123,9 +127,9 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
           if (response.ok) {
             const data = await response.json();
             if (data.userExists) {
-              setMode("login");
+              setScreenMode("login");
               setMessage(
-                "¡Bienvenido de vuelta! Ingresa tu contraseña para continuar."
+                "¡Bienvenido de vuelta! Ingresa tus datos para continuar."
               );
             }
           }
@@ -156,9 +160,9 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
     if (!emailError && !nameError && !passwordError) {
       try {
         const endpoint =
-          mode === "register" ? "/api/auth/register" : "/api/auth/login";
+          screenMode === "register" ? "/api/auth/register" : "/api/auth/login";
         const body =
-          mode === "register"
+          screenMode === "register"
             ? { email: formData.email, name: formData.name }
             : { email: formData.email, password: formData.password };
 
@@ -177,8 +181,8 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
           }, 2000);
         } else {
           setMessage(data.error);
-          if (data.userExists && mode === "register") {
-            setMode("login");
+          if (data.userExists && screenMode === "register") {
+            setScreenMode("login");
           }
         }
       } catch (error) {
@@ -202,13 +206,104 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
     }, 500); // Wait for animation to complete
   };
 
-  const switchMode = () => {
-    setMode(mode === "register" ? "login" : "register");
+  const handleBackToInitial = () => {
+    setScreenMode("initial");
     setFormData({ name: "", email: "", password: "" });
     setErrors({ name: "", email: "", password: "" });
     setMessage("");
   };
 
+  const handleOptionSelect = (option: "register" | "login") => {
+    setScreenMode(option);
+    setFormData({ name: "", email: "", password: "" });
+    setErrors({ name: "", email: "", password: "" });
+    setMessage("");
+  };
+
+  // Render initial screen with two buttons
+  if (screenMode === "initial") {
+    return (
+      <div
+        className={`fixed inset-0 backdrop-blur-md flex items-center justify-center p-4 z-50 transition-opacity duration-500 ${
+          isVisible ? "opacity-100" : "opacity-0"
+        }`}
+        onClick={handleBackdropClick}
+      >
+        <div className="w-full max-w-sm">
+          <div
+            className={`bg-[#fff3db] rounded-3xl p-6 shadow-2xl relative transition-all duration-500 ease-out transform ${
+              isVisible
+                ? "opacity-100 translate-y-0 scale-100"
+                : "opacity-0 translate-y-8 scale-95"
+            }`}
+          >
+            {/* Close Button */}
+            <button
+              onClick={handleClose}
+              className="absolute top-4 right-4 text-[#111827] hover:text-[#6b7280] transition-colors duration-200"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Top Graphic */}
+            <div className="flex justify-center mb-4">
+              <img
+                src="/images/sol-flashero.png"
+                alt="Sol flashero"
+                className="w-24 h-24 object-contain -m-5"
+              />
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-xl font-bold text-center mb-3 font-the-seasons text-[#111827]">
+              ¿Listo para transformar tu vida?
+            </h1>
+
+            {/* Descriptive Text */}
+            <p className="text-center mb-6 font-garet text-[#111827] text-sm">
+              Elige una opción
+            </p>
+
+            {/* Two Options */}
+            <div className="space-y-4">
+              <button
+                onClick={() => handleOptionSelect("register")}
+                className="w-full bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300 font-garet font-medium px-6 py-4 text-lg rounded-3xl focus:outline-none focus:ring-2 focus:ring-offset-2"
+              >
+                Quiero probar la primera temática de regalo
+              </button>
+
+              <button
+                onClick={() => handleOptionSelect("login")}
+                className="w-full bg-[#111827] text-[#fff3db] hover:bg-[#374151] transition-colors duration-300 font-garet font-medium px-6 py-4 text-lg rounded-3xl focus:outline-none focus:ring-2 focus:ring-offset-2 border border-[#374151]"
+              >
+                Ya formo parte
+              </button>
+            </div>
+
+            {/* Additional Info */}
+            <p className="text-xs text-center mt-6 font-garet text-[#6b7280]">
+              Accede a contenido exclusivo y continúa tu viaje de transformación
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Render register/login forms
   return (
     <div
       className={`fixed inset-0 backdrop-blur-md flex items-center justify-center p-4 z-50 transition-opacity duration-500 ${
@@ -245,6 +340,26 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
             </svg>
           </button>
 
+          {/* Back Button */}
+          <button
+            onClick={handleBackToInitial}
+            className="absolute top-4 left-4 text-[#111827] hover:text-[#6b7280] transition-colors duration-200"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
           {/* Top Graphic */}
           <div className="flex justify-center mb-3">
             <img
@@ -256,14 +371,14 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
 
           {/* Main Heading */}
           <h1 className="text-lg font-bold text-center mb-2 font-the-seasons text-[#111827]">
-            {mode === "register"
+            {screenMode === "register"
               ? "Comienza tu viaje de transformación"
               : "Bienvenido de vuelta"}
           </h1>
 
           {/* Descriptive Text */}
           <p className="text-center mb-4 font-garet text-[#111827] text-sm">
-            {mode === "register"
+            {screenMode === "register"
               ? "Comparte tu nombre e email para continuar"
               : "Ingresa tu contraseña para acceder"}
           </p>
@@ -301,7 +416,7 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
             </div>
 
             {/* Name Input - Only for register */}
-            {mode === "register" && (
+            {screenMode === "register" && (
               <div>
                 <Input
                   label="Nombre"
@@ -318,7 +433,7 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
             )}
 
             {/* Password Input - Only for login */}
-            {mode === "login" && (
+            {screenMode === "login" && (
               <div>
                 <Input
                   label="Contraseña"
@@ -342,7 +457,7 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
             >
               {isLoading
                 ? "Procesando..."
-                : mode === "register"
+                : screenMode === "register"
                 ? "Registrarse"
                 : "Ingresar"}
             </button>
@@ -352,10 +467,14 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
           <div className="text-center mt-4">
             <button
               type="button"
-              onClick={switchMode}
+              onClick={() =>
+                handleOptionSelect(
+                  screenMode === "register" ? "login" : "register"
+                )
+              }
               className="text-[#f59e0b] hover:text-[#d97706] font-garet text-sm transition-colors duration-200"
             >
-              {mode === "register"
+              {screenMode === "register"
                 ? "¿Ya tienes cuenta? Ingresa aquí"
                 : "¿Nuevo aquí? Regístrate"}
             </button>
@@ -363,7 +482,7 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
 
           {/* Additional Info */}
           <p className="text-xs text-center mt-4 font-garet text-[#6b7280]">
-            {mode === "register"
+            {screenMode === "register"
               ? "Al registrarte, recibirás información sobre el programa y podrás acceder a contenido exclusivo."
               : "Accede a tu contenido exclusivo y continúa tu viaje de transformación."}
           </p>

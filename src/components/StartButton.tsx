@@ -18,10 +18,10 @@ export default function StartButton({ onStartClick }: StartButtonProps) {
       <Button
         onClick={handleStartJourney}
         variant="primary"
-        size="md"
+        size="lg"
         className="font-garet relative z-20"
       >
-        Comenzar el viaje
+        Acceder al programa
       </Button>
     </div>
   );

@@ -60,7 +60,7 @@ export default function IntroductionSection({
         style={{ animationDuration: "3s" }}
       >
         <p className="text-xs tracking-wider font-garet font-normal text-primary">
-          Conocé más del programa
+          Conocé más
         </p>
         <svg
           width="24"
