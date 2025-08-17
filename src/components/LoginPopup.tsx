@@ -7,16 +7,23 @@ interface LoginPopupProps {
   onClose: () => void;
 }
 
+type AuthMode = "register" | "login";
+
 export default function LoginPopup({ onClose }: LoginPopupProps) {
+  const [mode, setMode] = useState<AuthMode>("register");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    password: "",
   });
   const [errors, setErrors] = useState({
     name: "",
     email: "",
+    password: "",
   });
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   // Block scroll when popup is open
   useEffect(() => {
@@ -67,14 +74,21 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
   };
 
   const validateName = (name: string): string => {
-    if (!name.trim()) {
+    if (mode === "register" && !name.trim()) {
       return "Me gustaría saber con quién conecto 💫";
     }
-    if (name.trim().length < 2) {
+    if (mode === "register" && name.trim().length < 2) {
       return "Tu nombre debe tener al menos 2 letras ✨";
     }
-    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name.trim())) {
+    if (mode === "register" && !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name.trim())) {
       return "Solo letras y espacios en tu nombre por favor 🌟";
+    }
+    return "";
+  };
+
+  const validatePassword = (password: string): string => {
+    if (mode === "login" && !password.trim()) {
+      return "Ingresa tu contraseña ✨";
     }
     return "";
   };
@@ -95,24 +109,84 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleEmailBlur = async () => {
+    if (mode === "register" && formData.email.trim()) {
+      const emailError = validateEmail(formData.email);
+      if (!emailError) {
+        try {
+          const response = await fetch("/api/auth/check-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: formData.email }),
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            if (data.userExists) {
+              setMode("login");
+              setMessage(
+                "¡Bienvenido de vuelta! Ingresa tu contraseña para continuar."
+              );
+            }
+          }
+        } catch (error) {
+          console.error("Error checking email:", error);
+        }
+      }
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setMessage("");
 
     // Validate all fields
     const emailError = validateEmail(formData.email);
     const nameError = validateName(formData.name);
+    const passwordError = validatePassword(formData.password);
 
     setErrors({
       email: emailError,
       name: nameError,
+      password: passwordError,
     });
 
     // If there are no errors, proceed with submission
-    if (!emailError && !nameError) {
-      // TODO: Implementar lógica de envío
-      console.log("Form submitted:", formData);
-      handleClose(); // Cerrar popup después del envío
+    if (!emailError && !nameError && !passwordError) {
+      try {
+        const endpoint =
+          mode === "register" ? "/api/auth/register" : "/api/auth/login";
+        const body =
+          mode === "register"
+            ? { email: formData.email, name: formData.name }
+            : { email: formData.email, password: formData.password };
+
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setMessage(data.message);
+          setTimeout(() => {
+            handleClose();
+          }, 2000);
+        } else {
+          setMessage(data.error);
+          if (data.userExists && mode === "register") {
+            setMode("login");
+          }
+        }
+      } catch (error) {
+        setMessage("Error de conexión. Intenta de nuevo.");
+      }
     }
+
+    setIsLoading(false);
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -126,6 +200,13 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
     setTimeout(() => {
       onClose();
     }, 500); // Wait for animation to complete
+  };
+
+  const switchMode = () => {
+    setMode(mode === "register" ? "login" : "register");
+    setFormData({ name: "", email: "", password: "" });
+    setErrors({ name: "", email: "", password: "" });
+    setMessage("");
   };
 
   return (
@@ -175,13 +256,31 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
 
           {/* Main Heading */}
           <h1 className="text-lg font-bold text-center mb-2 font-the-seasons text-[#111827]">
-            Comienza tu viaje de transformación
+            {mode === "register"
+              ? "Comienza tu viaje de transformación"
+              : "Bienvenido de vuelta"}
           </h1>
 
           {/* Descriptive Text */}
           <p className="text-center mb-4 font-garet text-[#111827] text-sm">
-            Comparte tu nombre e email para continuar
+            {mode === "register"
+              ? "Comparte tu nombre e email para continuar"
+              : "Ingresa tu contraseña para acceder"}
           </p>
+
+          {/* Message */}
+          {message && (
+            <div
+              className={`mb-4 p-3 rounded-lg text-sm font-garet ${
+                message.includes("exitosamente") ||
+                message.includes("Bienvenido")
+                  ? "bg-green-100 text-green-800"
+                  : "bg-red-100 text-red-800"
+              }`}
+            >
+              {message}
+            </div>
+          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
@@ -194,40 +293,79 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
                 placeholder="Tu email"
                 value={formData.email}
                 onChange={handleInputChange}
+                onBlur={handleEmailBlur}
                 required
                 variant="primary-on-cream"
                 error={errors.email}
               />
             </div>
 
-            {/* Name Input */}
-            <div>
-              <Input
-                label="Nombre"
-                type="text"
-                name="name"
-                placeholder="Tu nombre"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-                variant="primary-on-cream"
-                error={errors.name}
-              />
-            </div>
+            {/* Name Input - Only for register */}
+            {mode === "register" && (
+              <div>
+                <Input
+                  label="Nombre"
+                  type="text"
+                  name="name"
+                  placeholder="Tu nombre"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  variant="primary-on-cream"
+                  error={errors.name}
+                />
+              </div>
+            )}
+
+            {/* Password Input - Only for login */}
+            {mode === "login" && (
+              <div>
+                <Input
+                  label="Contraseña"
+                  type="password"
+                  name="password"
+                  placeholder="Tu contraseña"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                  variant="primary-on-cream"
+                  error={errors.password}
+                />
+              </div>
+            )}
 
             {/* Submit Button */}
             <button
               type="submit"
+              disabled={isLoading}
               className="w-full bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300 font-garet font-medium px-6 py-3 text-lg rounded-3xl focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Acceder
+              {isLoading
+                ? "Procesando..."
+                : mode === "register"
+                ? "Registrarse"
+                : "Ingresar"}
             </button>
           </form>
 
+          {/* Switch Mode Button */}
+          <div className="text-center mt-4">
+            <button
+              type="button"
+              onClick={switchMode}
+              className="text-[#f59e0b] hover:text-[#d97706] font-garet text-sm transition-colors duration-200"
+            >
+              {mode === "register"
+                ? "¿Ya tienes cuenta? Ingresa aquí"
+                : "¿Nuevo aquí? Regístrate"}
+            </button>
+          </div>
+
           {/* Additional Info */}
           <p className="text-xs text-center mt-4 font-garet text-[#6b7280]">
-            Al continuar, recibirás información sobre el programa y podrás
-            acceder a contenido exclusivo.
+            {mode === "register"
+              ? "Al registrarte, recibirás información sobre el programa y podrás acceder a contenido exclusivo."
+              : "Accede a tu contenido exclusivo y continúa tu viaje de transformación."}
           </p>
         </div>
       </div>
