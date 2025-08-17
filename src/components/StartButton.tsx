@@ -7,7 +7,7 @@ export default function StartButton() {
   const router = useRouter();
 
   const handleStartJourney = () => {
-    router.push("/course");
+    router.push("/login");
   };
 
   return (

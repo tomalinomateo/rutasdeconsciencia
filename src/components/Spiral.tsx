@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 // import { defaultStyles } from "@/lib/defaultStyles";
 
@@ -99,35 +101,10 @@ export default function Spiral() {
         </div>
       </div>
 
-      {/* Líneas de conexión */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none">
-        <defs>
-          <linearGradient
-            id="spiralGradient"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="100%"
-          >
-            <stop offset="0%" stopColor="#fff3db" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.1" />
-          </linearGradient>
-        </defs>
-        <path
-          d={topics
-            .map((_, index) => {
-              const position = getSpiralPosition(index + 1);
-              return `${index === 0 ? "M" : "L"} ${position.x + 150} ${
-                position.y + 192
-              }`;
-            })
-            .join(" ")}
-          stroke="url(#spiralGradient)"
-          strokeWidth="1"
-          fill="none"
-          opacity="0.5"
-        />
-      </svg>
+      {/* Animación de pulso para el día activo */}
+      {isAnimating && (
+        <div className="absolute inset-0 bg-[#f59e0b]/20 rounded-full animate-ping"></div>
+      )}
     </div>
   );
 }

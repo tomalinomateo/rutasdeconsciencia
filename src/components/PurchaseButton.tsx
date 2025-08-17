@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { CreditCard } from "lucide-react";
 import { Button } from "@/components/ui";
+import { useRouter } from "next/navigation";
 
 interface PurchaseButtonProps {
   variant?: "primary" | "secondary" | "outlined";
@@ -19,17 +19,15 @@ export default function PurchaseButton({
   showIcon = false,
   text = "Quiero comenzar el viaje",
 }: PurchaseButtonProps) {
+  const router = useRouter();
+
   const handlePurchase = () => {
-    // Función de compra deshabilitada temporalmente
-    console.log("Función de compra no disponible");
-    alert("Función de compra no disponible en este momento");
+    // Redirigir a la página de login
+    router.push("/login");
   };
 
   return (
-    <motion.div
-      whileHover={{ scale: variant === "primary" ? 1.05 : 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
+    <div className="transition-transform duration-200 hover:scale-105 active:scale-95">
       <Button
         variant={variant === "primary" ? "primary" : "secondary"}
         size={size === "small" ? "sm" : size === "medium" ? "md" : "lg"}
@@ -39,6 +37,6 @@ export default function PurchaseButton({
         {showIcon && <CreditCard className="h-5 w-5 text-red-500" />}
         <span>{text}</span>
       </Button>
-    </motion.div>
+    </div>
   );
 }

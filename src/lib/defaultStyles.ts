@@ -53,4 +53,18 @@ export const defaultStyles = {
     secondary: "bg-[#111827]",
     card: "bg-gray-800/50 border border-gray-700",
   },
+
+  // Estilos de campos de texto unificados
+  inputs: {
+    // Campo de texto estándar con fondo crema
+    primary: "input-primary",
+    // Campo de texto para fondos crema (variante)
+    primaryOnCream: "input-primary-on-cream",
+
+    // Clases CSS para uso directo
+    primaryClasses:
+      "bg-[#fff3db] text-[#111827] border-2 border-[rgba(245,158,11,0.3)] rounded-lg px-4 py-3 font-garet text-base transition-all duration-300 focus:outline-none focus:border-[#f59e0b] focus:ring-2 focus:ring-[rgba(245,158,11,0.1)]",
+    primaryOnCreamClasses:
+      "bg-white text-[#111827] border-2 border-[#f59e0b] rounded-lg px-4 py-3 font-garet text-base transition-all duration-300 focus:outline-none focus:border-[#d97706] focus:ring-2 focus:ring-[rgba(217,119,6,0.1)]",
+  },
 };

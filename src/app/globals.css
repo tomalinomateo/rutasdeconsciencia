@@ -367,3 +367,63 @@ body {
   background: var(--primary-cream);
   transform: scale(1.2);
 }
+
+/* ===== CAMPOS DE TEXTO ===== */
+/* Campo de texto estándar con fondo crema */
+.input-primary {
+  background-color: var(--primary-cream) !important;
+  color: #111827 !important;
+  border: 2px solid var(--border-secondary) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1rem !important;
+  font-family: "Garet", sans-serif !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.input-primary:focus {
+  outline: none !important;
+  border-color: var(--secondary-amber) !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+}
+
+.input-primary::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Campo de texto para fondos crema (variante) */
+.input-primary-on-cream {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border: 2px solid var(--secondary-amber) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1rem !important;
+  font-family: "Garet", sans-serif !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.input-primary-on-cream:focus {
+  outline: none !important;
+  border-color: #d97706 !important;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1) !important;
+}
+
+.input-primary-on-cream::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Estados de error para ambas variantes */
+.input-primary.error,
+.input-primary-on-cream.error {
+  border-color: var(--error) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+/* Estados deshabilitados para ambas variantes */
+.input-primary:disabled,
+.input-primary-on-cream:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  background-color: #f3f4f6 !important;
+}

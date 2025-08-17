@@ -4,13 +4,14 @@ interface InputProps {
   label?: string;
   placeholder?: string;
   value?: string;
-  onChange?: (value: string) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: "text" | "email" | "password" | "number";
   required?: boolean;
   disabled?: boolean;
   error?: string;
   className?: string;
   name?: string;
+  variant?: "primary" | "primary-on-cream";
 }
 
 const Input: React.FC<InputProps> = ({
@@ -24,31 +25,58 @@ const Input: React.FC<InputProps> = ({
   error,
   className = "",
   name,
+  variant = "primary",
 }) => {
-  const baseClasses =
-    "w-full px-4 py-3 font-garet text-base bg-background border border-gray-700 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:opacity-50 disabled:cursor-not-allowed";
-  const errorClasses = error ? "border-error focus:ring-error/50" : "";
-  const classes = `${baseClasses} ${errorClasses} ${className}`;
+  // Base classes for input styling
+  const getInputClasses = () => {
+    const baseClasses =
+      "w-full font-garet text-base transition-all duration-300 focus:outline-none";
+
+    // Variant-specific classes
+    const variantClasses =
+      variant === "primary-on-cream"
+        ? "input-primary-on-cream"
+        : "input-primary";
+
+    // Error state
+    const errorClasses = error ? "error" : "";
+
+    return `${baseClasses} ${variantClasses} ${errorClasses} ${className}`;
+  };
+
+  // Label classes based on variant
+  const getLabelClasses = () => {
+    const baseLabelClasses = "block font-garet font-medium text-sm";
+    const variantLabelClasses =
+      variant === "primary-on-cream"
+        ? "text-[#111827]" // Dark text for cream background
+        : "text-[#fff3db]"; // Cream text for dark background
+
+    return `${baseLabelClasses} ${variantLabelClasses}`;
+  };
+
+  const classes = getInputClasses();
+  const labelClasses = getLabelClasses();
 
   return (
     <div className="space-y-2">
       {label && (
-        <label className="block font-garet font-medium text-sm text-primary">
+        <label className={labelClasses}>
           {label}
-          {required && <span className="text-error ml-1">*</span>}
+          {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
       <input
         type={type}
         value={value}
-        onChange={(e) => onChange?.(e.target.value)}
+        onChange={onChange}
         placeholder={placeholder}
         required={required}
         disabled={disabled}
         name={name}
         className={classes}
       />
-      {error && <p className="text-sm text-error font-garet">{error}</p>}
+      {error && <p className="text-sm text-red-500 font-garet">{error}</p>}
     </div>
   );
 };

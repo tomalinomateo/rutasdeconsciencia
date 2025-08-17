@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Input, ProgressBar } from "@/components/ui";
+import { Button, Input, ProgressBar, MeditationIcon } from "@/components/ui";
 
 export default function StylesPage() {
   const [activeTab, setActiveTab] = useState("componentes");
@@ -39,6 +39,13 @@ export default function StylesPage() {
             size="md"
           >
             Fuentes
+          </Button>
+          <Button
+            onClick={() => handleTabClick("paginas")}
+            variant={activeTab === "paginas" ? "secondary" : "ghost"}
+            size="md"
+          >
+            Páginas
           </Button>
         </div>
 
@@ -176,19 +183,138 @@ export default function StylesPage() {
                 Campos de Texto
               </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input label="Nombre" placeholder="Ingresa tu nombre" />
-                <Input
-                  label="Email"
-                  type="email"
-                  placeholder="tu@email.com"
-                  required
-                />
-                <Input
-                  label="Campo con Error"
-                  placeholder="Este campo tiene un error"
-                  error="Este campo es requerido"
-                />
+              <p className="text-[#fff3db] text-lg mb-8 font-garet">
+                Sistema unificado de campos de texto con color crema (#fff3db) y
+                variantes para diferentes fondos.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Variante Principal */}
+                <div className="space-y-4">
+                  <h4 className="font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                    Variante Principal (Fondo Crema)
+                  </h4>
+                  <div className="space-y-4">
+                    <Input
+                      label="Nombre"
+                      placeholder="Ingresa tu nombre"
+                      variant="primary"
+                    />
+                    <Input
+                      label="Email"
+                      type="email"
+                      placeholder="tu@email.com"
+                      required
+                      variant="primary"
+                    />
+                    <Input
+                      label="Campo con Error"
+                      placeholder="Este campo tiene un error"
+                      error="Este campo es requerido"
+                      variant="primary"
+                    />
+                  </div>
+                </div>
+
+                {/* Variante para Fondos Crema */}
+                <div className="space-y-4">
+                  <h4 className="font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                    Variante para Fondos Crema
+                  </h4>
+                  <div className="p-6 bg-[#fff3db] rounded-lg">
+                    <div className="space-y-4">
+                      <Input
+                        label="Nombre"
+                        placeholder="Ingresa tu nombre"
+                        variant="primary-on-cream"
+                      />
+                      <Input
+                        label="Email"
+                        type="email"
+                        placeholder="tu@email.com"
+                        required
+                        variant="primary-on-cream"
+                      />
+                      <Input
+                        label="Campo con Error"
+                        placeholder="Este campo tiene un error"
+                        error="Este campo es requerido"
+                        variant="primary-on-cream"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Especificaciones Técnicas */}
+              <div className="mt-8 p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <h4 className="font-garet font-semibold text-[#fff3db] mb-4">
+                  Especificaciones Técnicas
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-garet font-medium text-[#fff3db] mb-2">
+                      Variante Principal
+                    </h5>
+                    <ul className="space-y-1 text-sm text-gray-300">
+                      <li>
+                        <code>variant="primary"</code>
+                      </li>
+                      <li>Fondo: #fff3db (Primary Cream)</li>
+                      <li>Texto: #111827 (Dark Gray)</li>
+                      <li>Borde: rgba(245,158,11,0.3)</li>
+                      <li>Focus: #f59e0b (Secondary Amber)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-garet font-medium text-[#fff3db] mb-2">
+                      Variante para Fondos Crema
+                    </h5>
+                    <ul className="space-y-1 text-sm text-gray-300">
+                      <li>
+                        <code>variant="primary-on-cream"</code>
+                      </li>
+                      <li>Fondo: #ffffff (White)</li>
+                      <li>Texto: #111827 (Dark Gray)</li>
+                      <li>Borde: #f59e0b (Secondary Amber)</li>
+                      <li>Focus: #d97706 (Darker Amber)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Meditation Icon Section */}
+            <section className="space-y-6">
+              <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                Ícono de Meditación
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="space-y-4">
+                  <h4 className="font-garet font-medium text-[#fff3db]">
+                    Tamaño Pequeño
+                  </h4>
+                  <div className="flex justify-center">
+                    <MeditationIcon size="sm" />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="font-garet font-medium text-[#fff3db]">
+                    Tamaño Mediano
+                  </h4>
+                  <div className="flex justify-center">
+                    <MeditationIcon size="md" />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="font-garet font-medium text-[#fff3db]">
+                    Tamaño Grande
+                  </h4>
+                  <div className="flex justify-center">
+                    <MeditationIcon size="lg" />
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -273,6 +399,10 @@ export default function StylesPage() {
                       <p className="text-gray-500 text-xs">
                         Botones principales, texto destacado
                       </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Labels, títulos, botones
+                        primary, fondo de inputs, texto principal
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -284,6 +414,10 @@ export default function StylesPage() {
                       <p className="text-gray-400 text-sm">#f59e0b</p>
                       <p className="text-gray-500 text-xs">
                         Botones secundarios, acentos
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Botones secondary, bordes de
+                        inputs, focus states, tabs activos
                       </p>
                     </div>
                   </div>
@@ -297,6 +431,10 @@ export default function StylesPage() {
                       <p className="text-gray-500 text-xs">
                         Elementos de acento, highlights
                       </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Elementos de acento,
+                        highlights, efectos especiales
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -308,6 +446,10 @@ export default function StylesPage() {
                       <p className="text-gray-400 text-sm">#fef3c7</p>
                       <p className="text-gray-500 text-xs">
                         Estado bloqueado, badges inactivos
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Estados bloqueados, badges
+                        inactivos, hover states
                       </p>
                     </div>
                   </div>
@@ -328,6 +470,10 @@ export default function StylesPage() {
                       </h4>
                       <p className="text-gray-400 text-sm">#0f0f0f</p>
                       <p className="text-gray-500 text-xs">Fondo principal</p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Fondo principal de la página,
+                        contenedores principales
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -338,6 +484,10 @@ export default function StylesPage() {
                       </h4>
                       <p className="text-gray-400 text-sm">#111827</p>
                       <p className="text-gray-500 text-xs">Fondo secundario</p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Fondos secundarios, cards,
+                        secciones alternadas
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -357,6 +507,10 @@ export default function StylesPage() {
                       </h4>
                       <p className="text-gray-400 text-sm">#10b981</p>
                       <p className="text-gray-500 text-xs">Éxito, completado</p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Barras de progreso exitosas,
+                        mensajes de éxito, estados completados
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -367,6 +521,10 @@ export default function StylesPage() {
                       </h4>
                       <p className="text-gray-400 text-sm">#ef4444</p>
                       <p className="text-gray-500 text-xs">Error, alerta</p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Mensajes de error, bordes de
+                        inputs con error, estados de error
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -377,6 +535,67 @@ export default function StylesPage() {
                       </h4>
                       <p className="text-gray-400 text-sm">#f59e0b</p>
                       <p className="text-gray-500 text-xs">Advertencia</p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Barras de progreso con
+                        advertencia, mensajes de advertencia
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Colores de Texto y UI */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                  Colores de Texto y UI
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-16 h-16 bg-[#111827] rounded-lg shadow-lg border border-gray-700"></div>
+                    <div>
+                      <h4 className="font-garet font-medium text-[#fff3db]">
+                        Dark Gray
+                      </h4>
+                      <p className="text-gray-400 text-sm">#111827</p>
+                      <p className="text-gray-500 text-xs">
+                        Texto principal en campos
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Texto dentro de inputs,
+                        labels en fondos crema, texto de especificaciones
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-16 h-16 bg-[#ffffff] rounded-lg shadow-lg border border-gray-700"></div>
+                    <div>
+                      <h4 className="font-garet font-medium text-[#fff3db]">
+                        White
+                      </h4>
+                      <p className="text-gray-400 text-sm">#ffffff</p>
+                      <p className="text-gray-500 text-xs">
+                        Fondo de campos en fondos crema
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Fondo de inputs en variante
+                        para fondos crema, contraste en fondos oscuros
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-16 h-16 bg-[#d97706] rounded-lg shadow-lg"></div>
+                    <div>
+                      <h4 className="font-garet font-medium text-[#fff3db]">
+                        Darker Amber
+                      </h4>
+                      <p className="text-gray-400 text-sm">#d97706</p>
+                      <p className="text-gray-500 text-xs">
+                        Focus en campos para fondos crema
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Estado focus de inputs en
+                        variante para fondos crema, hover states
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -424,6 +643,28 @@ export default function StylesPage() {
                     </li>
                     <li>
                       <code>--text-secondary: #9ca3af</code>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-garet font-medium text-[#fff3db] mb-2">
+                    Colores de UI
+                  </h4>
+                  <ul className="space-y-1 text-sm text-gray-300">
+                    <li>
+                      <code>--text-dark: #111827</code>
+                    </li>
+                    <li>
+                      <code>--white: #ffffff</code>
+                    </li>
+                    <li>
+                      <code>--darker-amber: #d97706</code>
+                    </li>
+                    <li>
+                      <code>--success: #10b981</code>
+                    </li>
+                    <li>
+                      <code>--error: #ef4444</code>
                     </li>
                   </ul>
                 </div>
@@ -616,6 +857,125 @@ export default function StylesPage() {
                     </ul>
                   </div>
                 </div>
+              </div>
+            </section>
+          </div>
+        )}
+
+        {/* Páginas */}
+        {activeTab === "paginas" && (
+          <div className="space-y-12">
+            <h2 className="text-2xl font-the-seasons mb-6 text-[#fff3db]">
+              Páginas del Sistema
+            </h2>
+
+            {/* Home Page */}
+            <section className="space-y-6">
+              <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                Página Principal (Home)
+              </h3>
+              <div className="p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <h4 className="font-garet font-medium text-[#fff3db] mb-4">
+                  Ruta
+                </h4>
+                <p className="text-sm text-gray-300 font-mono mb-4">
+                  <code>/</code>
+                </p>
+                <Button
+                  onClick={() => window.open("/", "_blank")}
+                  variant="primary"
+                  size="sm"
+                >
+                  Ver Página
+                </Button>
+              </div>
+            </section>
+
+            {/* Login Page */}
+            <section className="space-y-6">
+              <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                Página de Login
+              </h3>
+              <div className="p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <h4 className="font-garet font-medium text-[#fff3db] mb-4">
+                  Ruta
+                </h4>
+                <p className="text-sm text-gray-300 font-mono mb-4">
+                  <code>/login</code>
+                </p>
+                <Button
+                  onClick={() => window.open("/login", "_blank")}
+                  variant="primary"
+                  size="sm"
+                >
+                  Ver Página
+                </Button>
+              </div>
+            </section>
+
+            {/* Course Page */}
+            <section className="space-y-6">
+              <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                Página del Curso
+              </h3>
+              <div className="p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <h4 className="font-garet font-medium text-[#fff3db] mb-4">
+                  Ruta
+                </h4>
+                <p className="text-sm text-gray-300 font-mono mb-4">
+                  <code>/course</code>
+                </p>
+                <Button
+                  onClick={() => window.open("/course", "_blank")}
+                  variant="primary"
+                  size="sm"
+                >
+                  Ver Página
+                </Button>
+              </div>
+            </section>
+
+            {/* Components Page */}
+            <section className="space-y-6">
+              <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                Página de Componentes
+              </h3>
+              <div className="p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <h4 className="font-garet font-medium text-[#fff3db] mb-4">
+                  Ruta
+                </h4>
+                <p className="text-sm text-gray-300 font-mono mb-4">
+                  <code>/components</code>
+                </p>
+                <Button
+                  onClick={() => window.open("/components", "_blank")}
+                  variant="primary"
+                  size="sm"
+                >
+                  Ver Página
+                </Button>
+              </div>
+            </section>
+
+            {/* Styles Page */}
+            <section className="space-y-6">
+              <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                Página de Estilos (Actual)
+              </h3>
+              <div className="p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <h4 className="font-garet font-medium text-[#fff3db] mb-4">
+                  Ruta
+                </h4>
+                <p className="text-sm text-gray-300 font-mono mb-4">
+                  <code>/styles</code>
+                </p>
+                <Button
+                  onClick={() => window.open("/styles", "_blank")}
+                  variant="primary"
+                  size="sm"
+                >
+                  Ver Página
+                </Button>
               </div>
             </section>
           </div>
