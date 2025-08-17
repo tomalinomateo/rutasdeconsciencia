@@ -3,7 +3,11 @@
 import { defaultStyles } from "@/lib/defaultStyles";
 import PurchaseButton from "../PurchaseButton";
 
-export default function CTASection() {
+interface CTASectionProps {
+  onLoginClick?: () => void;
+}
+
+export default function CTASection({ onLoginClick }: CTASectionProps) {
   return (
     <section id="cta" className="py-20 relative z-10 overflow-hidden">
       <div
@@ -25,8 +29,16 @@ export default function CTASection() {
         <p className="text-lg text-primary opacity-90 font-garet mb-8">
           Comienza tu viaje de transformación hoy mismo.
         </p>
-        <div className="flex justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <PurchaseButton variant="primary" size="large" />
+          {onLoginClick && (
+            <button
+              onClick={onLoginClick}
+              className="bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300 font-garet font-medium px-6 py-3 text-lg rounded-3xl focus:outline-none focus:ring-2 focus:ring-offset-2"
+            >
+              Acceder
+            </button>
+          )}
         </div>
         <span className="text-sm text-primary opacity-75">
           Acceso inmediato • 21 días de contenido • Garantía de satisfacción

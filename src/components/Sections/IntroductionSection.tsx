@@ -3,7 +3,13 @@
 import Image from "next/image";
 import StartButton from "../StartButton";
 
-export default function IntroductionSection() {
+interface IntroductionSectionProps {
+  onStartClick?: () => void;
+}
+
+export default function IntroductionSection({
+  onStartClick,
+}: IntroductionSectionProps) {
   return (
     <div className="w-full h-screen relative z-10 overflow-hidden">
       <div className="absolute inset-0">
@@ -46,7 +52,7 @@ export default function IntroductionSection() {
         <p className="text-[10px] md:text-xs font-light mb-8 font-garet text-primary">
           Para transformar tu manera de pensar, vivir y sentir.
         </p>
-        <StartButton />
+        <StartButton onStartClick={onStartClick} />
       </div>
 
       <div

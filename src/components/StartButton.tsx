@@ -1,13 +1,16 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
 
-export default function StartButton() {
-  const router = useRouter();
+interface StartButtonProps {
+  onStartClick?: () => void;
+}
 
+export default function StartButton({ onStartClick }: StartButtonProps) {
   const handleStartJourney = () => {
-    router.push("/login");
+    if (onStartClick) {
+      onStartClick();
+    }
   };
 
   return (

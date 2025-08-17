@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import SpacialBackground from "@/components/SpacialBackground";
 import StatsSection from "@/components/Sections/StatsSection";
 import AboutCourseSection from "@/components/Sections/AboutCourseSection";
@@ -11,11 +12,14 @@ import Footer from "@/components/Sections/Footer";
 import TematicasSection from "@/components/Sections/TematicasSection";
 import TransformationSection from "@/components/Sections/TransformationSection";
 import IntroductionSection from "@/components/Sections/IntroductionSection";
+import LoginPopup from "@/components/LoginPopup";
 
 export default function LandingPage() {
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+
   return (
     <div className="min-h-screen relative">
-      <IntroductionSection />
+      <IntroductionSection onStartClick={() => setShowLoginPopup(true)} />
       <SpacialBackground />
 
       <StatsSection />
@@ -27,6 +31,11 @@ export default function LandingPage() {
       <FAQSection />
       <CTASection />
       <Footer />
+
+      {/* Login Popup */}
+      {showLoginPopup && (
+        <LoginPopup onClose={() => setShowLoginPopup(false)} />
+      )}
     </div>
   );
 }
