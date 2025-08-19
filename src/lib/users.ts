@@ -51,6 +51,13 @@ export async function findUserByEmail(email: string) {
   });
 }
 
+// Find user by ID
+export async function getUserById(userId: string) {
+  return await prisma.user.findUnique({
+    where: { id: userId },
+  });
+}
+
 // Verify user password
 export async function verifyPassword(user: any, password: string) {
   return await bcrypt.compare(password, user.password);

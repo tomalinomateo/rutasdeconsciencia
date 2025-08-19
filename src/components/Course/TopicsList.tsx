@@ -17,7 +17,7 @@ export default function TopicsList() {
   ];
 
   const handleStartJourney = () => {
-    router.push("/login");
+    router.push("/");
   };
 
   return (

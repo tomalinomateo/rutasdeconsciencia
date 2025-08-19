@@ -22,8 +22,8 @@ export default function PurchaseButton({
   const router = useRouter();
 
   const handlePurchase = () => {
-    // Redirigir a la página de login
-    router.push("/login");
+    // Redirigir a la página principal
+    router.push("/");
   };
 
   return (

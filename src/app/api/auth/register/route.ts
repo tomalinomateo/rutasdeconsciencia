@@ -36,6 +36,7 @@ export async function POST(request: NextRequest) {
         email: user.email,
         name: user.name,
       },
+      token: user.id, // For now, using user ID as token
     });
   } catch (error) {
     console.error("Registration error:", error);

@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
         name: user.name,
         loginCount: user.loginCount + 1,
       },
+      token: user.id, // For now, using user ID as token
     });
   } catch (error) {
     console.error("Login error:", error);

@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 interface LoginPopupProps {
   onClose: () => void;
@@ -13,6 +15,9 @@ type ScreenMode = "initial" | "register" | "login";
 export default function LoginPopup({ onClose }: LoginPopupProps) {
   const [screenMode, setScreenMode] = useState<ScreenMode>("initial");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const { login } = useAuth();
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -178,9 +183,23 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
 
         if (response.ok) {
           setMessage(data.message);
-          setTimeout(() => {
-            handleClose();
-          }, 2000);
+          setShowSuccessMessage(true);
+
+          // Login successful - update auth context and redirect
+          if (data.user) {
+            login(data.user);
+            if (data.token) {
+              localStorage.setItem("authToken", data.token);
+            }
+            setTimeout(() => {
+              handleClose();
+              router.push("/course");
+            }, 1500);
+          } else {
+            setTimeout(() => {
+              handleClose();
+            }, 2000);
+          }
         } else {
           setMessage(data.error);
           if (data.userExists && screenMode === "register") {
@@ -220,6 +239,7 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
     setFormData({ name: "", email: "", password: "" });
     setErrors({ name: "", email: "", password: "" });
     setMessage("");
+    setShowSuccessMessage(false);
   };
 
   const handleSmoothTransition = (option: "register" | "login") => {
@@ -404,6 +424,7 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
               <div
                 className={`mb-4 p-3 rounded-lg text-sm font-garet ${
                   message.includes("exitosamente") ||
+                  message.includes("exitoso") ||
                   message.includes("Bienvenido")
                     ? "bg-green-100 text-green-800"
                     : "bg-red-100 text-red-800"
@@ -413,96 +434,102 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
               </div>
             )}
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-              {/* Email Input */}
-              <div>
-                <Input
-                  label="Email"
-                  type="email"
-                  name="email"
-                  placeholder="Tu email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  onBlur={handleEmailBlur}
-                  required
-                  variant="primary-on-cream"
-                  error={errors.email}
-                />
+            {/* Form - Hide when showing success message */}
+            {!showSuccessMessage && (
+              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                {/* Email Input */}
+                <div>
+                  <Input
+                    label="Email"
+                    type="email"
+                    name="email"
+                    placeholder="Tu email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    onBlur={handleEmailBlur}
+                    required
+                    variant="primary-on-cream"
+                    error={errors.email}
+                  />
+                </div>
+
+                {/* Name Input - Only for register */}
+                {screenMode === "register" && (
+                  <div>
+                    <Input
+                      label="Nombre"
+                      type="text"
+                      name="name"
+                      placeholder="Tu nombre"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      variant="primary-on-cream"
+                      error={errors.name}
+                    />
+                  </div>
+                )}
+
+                {/* Password Input - Only for login */}
+                {screenMode === "login" && (
+                  <div>
+                    <Input
+                      label="Contraseña"
+                      type="password"
+                      name="password"
+                      placeholder="Tu contraseña"
+                      value={formData.password}
+                      onChange={handleInputChange}
+                      required
+                      variant="primary-on-cream"
+                      error={errors.password}
+                    />
+                  </div>
+                )}
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300 font-garet font-medium px-6 py-3 text-lg rounded-3xl focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading
+                    ? "Procesando..."
+                    : screenMode === "register"
+                    ? "Registrarse"
+                    : "Ingresar"}
+                </button>
+              </form>
+            )}
+
+            {/* Switch Mode Button - Hide when showing success message */}
+            {!showSuccessMessage && (
+              <div className="text-center mt-4">
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleSmoothTransition(
+                      screenMode === "register" ? "login" : "register"
+                    )
+                  }
+                  disabled={isTransitioning}
+                  className="text-[#f59e0b] hover:text-[#d97706] font-garet text-sm transition-colors duration-200 disabled:opacity-50"
+                >
+                  {screenMode === "register"
+                    ? "¿Ya tienes cuenta? Ingresa aquí"
+                    : "¿Nuevo aquí? Regístrate"}
+                </button>
               </div>
+            )}
 
-              {/* Name Input - Only for register */}
-              {screenMode === "register" && (
-                <div>
-                  <Input
-                    label="Nombre"
-                    type="text"
-                    name="name"
-                    placeholder="Tu nombre"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    variant="primary-on-cream"
-                    error={errors.name}
-                  />
-                </div>
-              )}
-
-              {/* Password Input - Only for login */}
-              {screenMode === "login" && (
-                <div>
-                  <Input
-                    label="Contraseña"
-                    type="password"
-                    name="password"
-                    placeholder="Tu contraseña"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
-                    variant="primary-on-cream"
-                    error={errors.password}
-                  />
-                </div>
-              )}
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300 font-garet font-medium px-6 py-3 text-lg rounded-3xl focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isLoading
-                  ? "Procesando..."
-                  : screenMode === "register"
-                  ? "Registrarse"
-                  : "Ingresar"}
-              </button>
-            </form>
-
-            {/* Switch Mode Button */}
-            <div className="text-center mt-4">
-              <button
-                type="button"
-                onClick={() =>
-                  handleSmoothTransition(
-                    screenMode === "register" ? "login" : "register"
-                  )
-                }
-                disabled={isTransitioning}
-                className="text-[#f59e0b] hover:text-[#d97706] font-garet text-sm transition-colors duration-200 disabled:opacity-50"
-              >
+            {/* Additional Info - Hide when showing success message */}
+            {!showSuccessMessage && (
+              <p className="text-xs text-center mt-4 font-garet text-[#6b7280]">
                 {screenMode === "register"
-                  ? "¿Ya tienes cuenta? Ingresa aquí"
-                  : "¿Nuevo aquí? Regístrate"}
-              </button>
-            </div>
-
-            {/* Additional Info */}
-            <p className="text-xs text-center mt-4 font-garet text-[#6b7280]">
-              {screenMode === "register"
-                ? "Al registrarte, recibirás información sobre el programa y podrás acceder a contenido exclusivo."
-                : "Accede a tu contenido exclusivo y continúa tu viaje de transformación."}
-            </p>
+                  ? "Al registrarte, recibirás información sobre el programa y podrás acceder a contenido exclusivo."
+                  : "Accede a tu contenido exclusivo y continúa tu viaje de transformación."}
+              </p>
+            )}
           </div>
         </div>
       </div>
