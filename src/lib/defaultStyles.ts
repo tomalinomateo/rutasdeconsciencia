@@ -43,8 +43,8 @@ export const defaultStyles = {
     secondary:
       "bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300",
     ghost:
-      "bg-transparent text-[#fff3db] hover:bg-[#fff3db]/10 transition-colors duration-300",
-    text: "bg-transparent text-[#fff3db] hover:bg-[#fff3db]/5 transition-colors duration-300",
+      "bg-transparent text-[#fff3db] hover:bg-[#fff3db]/20 hover:text-[#f59e0b] transition-colors duration-300 border border-[#fff3db]/30 hover:border-[#f59e0b]/50",
+    text: "bg-transparent text-[#fff3db] hover:text-[#fbbf24] transition-colors duration-300 underline-offset-4 hover:underline",
   },
 
   // Estilos de fondos unificados

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 import SpacialBackground from "@/components/SpacialBackground";
 import StatsSection from "@/components/Sections/StatsSection";
 import AboutCourseSection from "@/components/Sections/AboutCourseSection";
@@ -16,10 +18,22 @@ import LoginPopup from "@/components/LoginPopup";
 
 export default function LandingPage() {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const handleStartClick = () => {
+    if (user) {
+      // If user is authenticated, redirect to course
+      router.push("/course");
+    } else {
+      // If user is not authenticated, show login popup
+      setShowLoginPopup(true);
+    }
+  };
 
   return (
     <div className="min-h-screen relative">
-      <IntroductionSection onStartClick={() => setShowLoginPopup(true)} />
+      <IntroductionSection onStartClick={handleStartClick} />
       <SpacialBackground />
 
       <StatsSection />
@@ -29,7 +43,7 @@ export default function LandingPage() {
       <ForYouSection />
       <AboutMeSection />
       <FAQSection />
-      <CTASection />
+      <CTASection onLoginClick={handleStartClick} />
       <Footer />
 
       {/* Login Popup */}

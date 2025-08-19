@@ -13,6 +13,7 @@ interface AuthContextType {
   login: (userData: User) => void;
   logout: () => void;
   isLoading: boolean;
+  isAuthenticated: () => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -77,8 +78,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     window.location.href = "/";
   };
 
+  // Function to check if user is authenticated
+  const isAuthenticated = () => {
+    return user !== null;
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading }}>
+    <AuthContext.Provider
+      value={{ user, login, logout, isLoading, isAuthenticated }}
+    >
       {children}
     </AuthContext.Provider>
   );

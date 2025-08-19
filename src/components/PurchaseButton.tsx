@@ -3,6 +3,7 @@
 import { CreditCard } from "lucide-react";
 import { Button } from "@/components/ui";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 interface PurchaseButtonProps {
   variant?: "primary" | "secondary" | "outlined";
@@ -10,6 +11,7 @@ interface PurchaseButtonProps {
   className?: string;
   showIcon?: boolean;
   text?: string;
+  onStartClick?: () => void;
 }
 
 export default function PurchaseButton({
@@ -18,12 +20,21 @@ export default function PurchaseButton({
   className = "",
   showIcon = false,
   text = "Quiero comenzar el viaje",
+  onStartClick,
 }: PurchaseButtonProps) {
   const router = useRouter();
+  const { user } = useAuth();
 
   const handlePurchase = () => {
-    // Redirigir a la página principal
-    router.push("/");
+    if (onStartClick) {
+      onStartClick();
+    } else if (user) {
+      // If user is authenticated, redirect to course
+      router.push("/course");
+    } else {
+      // If user is not authenticated, redirect to home to show login popup
+      router.push("/");
+    }
   };
 
   return (

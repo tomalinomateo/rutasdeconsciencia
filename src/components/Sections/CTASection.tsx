@@ -30,15 +30,11 @@ export default function CTASection({ onLoginClick }: CTASectionProps) {
           Comienza tu viaje de transformación hoy mismo.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <PurchaseButton variant="primary" size="large" />
-          {onLoginClick && (
-            <button
-              onClick={onLoginClick}
-              className="bg-[#f59e0b] text-white hover:bg-[#d97706] transition-colors duration-300 font-garet font-medium px-6 py-3 text-lg rounded-3xl focus:outline-none focus:ring-2 focus:ring-offset-2"
-            >
-              Acceder
-            </button>
-          )}
+          <PurchaseButton
+            variant="primary"
+            size="large"
+            onStartClick={onLoginClick}
+          />
         </div>
         <span className="text-sm text-primary opacity-75">
           Acceso inmediato • 21 días de contenido • Garantía de satisfacción

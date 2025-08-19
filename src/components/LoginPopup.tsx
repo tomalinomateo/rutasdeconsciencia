@@ -1,15 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
 
 interface LoginPopupProps {
   onClose: () => void;
 }
 
-type AuthMode = "register" | "login";
 type ScreenMode = "initial" | "register" | "login";
 
 export default function LoginPopup({ onClose }: LoginPopupProps) {
@@ -140,8 +139,8 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
               );
             }
           }
-        } catch (error) {
-          console.error("Error checking email:", error);
+        } catch {
+          console.error("Error checking email");
         }
       }
     }
@@ -206,7 +205,7 @@ export default function LoginPopup({ onClose }: LoginPopupProps) {
             setScreenMode("login");
           }
         }
-      } catch (error) {
+      } catch {
         setMessage("Error de conexión. Intenta de nuevo.");
       }
     }
