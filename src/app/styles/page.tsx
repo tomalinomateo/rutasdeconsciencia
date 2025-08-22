@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button, Input, ProgressBar, MeditationIcon } from "@/components/ui";
+import TopicCard from "@/components/Course/TopicCard";
+import { topics } from "@/lib/topics";
 
 export default function StylesPage() {
   const [activeTab, setActiveTab] = useState("componentes");
@@ -368,6 +370,170 @@ export default function StylesPage() {
                       Progreso Advertencia
                     </h4>
                     <ProgressBar current={3} total={10} variant="warning" />
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Topic Cards Section */}
+            <section className="space-y-6">
+              <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                Cards de Temas
+              </h3>
+
+              <p className="text-[#fff3db] text-lg mb-8 font-garet">
+                Sistema de cards para mostrar los 21 temas del programa de
+                transformación. Cada card muestra el estado
+                (desbloqueado/bloqueado) y la información del tema.
+              </p>
+
+              <div className="space-y-8">
+                {/* Ejemplos de Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {topics.slice(0, 6).map((topic) => (
+                    <div
+                      key={topic.id}
+                      className="bg-[#111827] rounded-lg p-4 h-full"
+                    >
+                      <TopicCard topic={topic} />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Especificaciones Técnicas */}
+                <div className="mt-8 p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                  <h4 className="font-garet font-semibold text-[#fff3db] mb-4">
+                    Especificaciones Técnicas
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h5 className="font-garet font-medium text-[#fff3db] mb-2">
+                        Estados de las Cards
+                      </h5>
+                      <ul className="space-y-1 text-sm text-gray-300">
+                        <li>
+                          <strong>Desbloqueado:</strong> Badge "Día X" en
+                          header, título con gradiente dorado, botón "Abrir" en
+                          la parte baja
+                        </li>
+                        <li>
+                          <strong>Bloqueado:</strong> Badge "Día X" en header,
+                          título con gradiente gris, sin botón en la parte baja
+                        </li>
+                        <li>
+                          <strong>Animación:</strong> Efecto de escala al hacer
+                          clic en la card, hover con escala y sombra en botón
+                        </li>
+                        <li>
+                          <strong>Responsive:</strong> Se adapta a diferentes
+                          tamaños de pantalla, altura uniforme con flexbox
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-garet font-medium text-[#fff3db] mb-2">
+                        Estructura de Datos
+                      </h5>
+                      <ul className="space-y-1 text-sm text-gray-300">
+                        <li>
+                          <code>id:</code> Número del tema (1-21)
+                        </li>
+                        <li>
+                          <code>title:</code> Título del tema
+                        </li>
+                        <li>
+                          <code>description:</code> Descripción breve
+                        </li>
+                        <li>
+                          <code>isUnlocked:</code> Estado de desbloqueo
+                        </li>
+                        <li>
+                          <code>onSelect:</code> Función callback para el botón
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Clases CSS */}
+                <div className="p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                  <h4 className="font-garet font-semibold text-[#fff3db] mb-4">
+                    Clases CSS Utilizadas
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h5 className="font-garet font-medium text-[#fff3db] mb-2">
+                        Estados de Cards
+                      </h5>
+                      <ul className="space-y-1 text-sm text-gray-300">
+                        <li>
+                          <code>topic-card-active:</code> Card desbloqueada
+                        </li>
+                        <li>
+                          <code>topic-card-locked:</code> Card bloqueada
+                        </li>
+                        <li>
+                          <code>topic-title:</code> Estilo del título con
+                          gradiente dorado para activos, gris para bloqueados
+                        </li>
+                        <li>
+                          <code>topic-description:</code> Estilo de la
+                          descripción del tema
+                        </li>
+                        <li>
+                          <code>from-[#6b7280] to-[#9ca3af]:</code> Gradiente
+                          gris para títulos bloqueados
+                        </li>
+                        <li>
+                          <code>bg-[#f59e0b]/10:</code> Fondo del badge "Día X"
+                        </li>
+                        <li>
+                          <code>
+                            bg-gradient-to-r from-[#f59e0b] to-[#fbbf24]:
+                          </code>{" "}
+                          Gradiente del botón "Abrir"
+                        </li>
+                        <li>
+                          <code>hover:from-[#d97706] hover:to-[#f59e0b]:</code>{" "}
+                          Gradiente hover del botón
+                        </li>
+                        <li>
+                          <code>w-full:</code> Botón de ancho completo en la
+                          parte baja
+                        </li>
+                        <li>
+                          <code>transform hover:scale-[1.02]:</code> Efecto de
+                          escala en hover del botón
+                        </li>
+                        <li>
+                          <code>border-t border-gray-700/30:</code> Separador
+                          sutil del botón
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-garet font-medium text-[#fff3db] mb-2">
+                        Elementos Especiales
+                      </h5>
+                      <ul className="space-y-1 text-sm text-gray-300">
+                        <li>
+                          <code>
+                            bg-gradient-to-r from-[#f59e0b] to-[#fbbf24]:
+                          </code>{" "}
+                          Gradiente del título activo
+                        </li>
+                        <li>
+                          <code>bg-clip-text text-transparent:</code> Texto con
+                          gradiente
+                        </li>
+                        <li>
+                          <code>animate-pulse:</code> Animación de parpadeo
+                        </li>
+                        <li>
+                          <code>scale-[0.99]:</code> Efecto de escala al clic
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>

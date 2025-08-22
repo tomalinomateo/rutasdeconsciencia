@@ -3,18 +3,10 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
 import TopicCard from "./TopicCard";
+import { topics } from "@/lib/topics";
 
 export default function TopicsList() {
   const router = useRouter();
-
-  const topics = [
-    {
-      id: 1,
-      title: "Día 1: El Despertar",
-      description: "Lleva la iluminación a tu vida cotidiana",
-      isUnlocked: false,
-    },
-  ];
 
   const handleStartJourney = () => {
     router.push("/");
@@ -36,19 +28,37 @@ export default function TopicsList() {
       </div>
 
       <div className="bg-secondary/20 backdrop-blur-sm rounded-lg p-8 border border-secondary">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {topics.map((topic) => (
-            <TopicCard key={topic.id} topic={topic} />
-          ))}
+        <div className="relative">
+          {/* Layout vertical: CARD - flecha - CARD - flecha */}
+          <div className="flex flex-col items-center space-y-4">
+            {/* Primera card */}
+            <div className="w-full max-w-md">
+              <TopicCard topic={topics[0]} />
+            </div>
+
+            {/* Segunda card */}
+            <div className="w-full max-w-md">
+              <TopicCard topic={topics[1]} />
+            </div>
+
+            {/* Resto de cards en grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full">
+              {topics.slice(2).map((topic) => (
+                <div key={topic.id} className="relative">
+                  <TopicCard topic={topic} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="text-center mt-12">
         <p className="text-lg mb-6 font-garet text-primary">
-          ¿Listo para comenzar tu viaje de transformación?
+          ¿Listo para explorar las 21 puertas hacia tu universo interno?
         </p>
         <Button variant="primary" size="lg" onClick={handleStartJourney}>
-          Comenzar Ahora
+          Comenzar el Viaje
         </Button>
       </div>
     </div>
