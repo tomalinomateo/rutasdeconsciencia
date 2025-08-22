@@ -29,6 +29,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // First, try to get user data from localStorage
         const userData = localStorage.getItem("userData");
         const token = localStorage.getItem("authToken");
+        const loginTimestamp = localStorage.getItem("loginTimestamp");
+
+        // Check if session has expired (12 hours)
+        if (loginTimestamp) {
+          const loginTime = parseInt(loginTimestamp);
+          const currentTime = Date.now();
+          const twelveHours = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+
+          if (currentTime - loginTime > twelveHours) {
+            // Session expired, clear everything
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("userData");
+            localStorage.removeItem("loginTimestamp");
+            setUser(null);
+            setIsLoading(false);
+            return;
+          }
+        }
 
         if (userData && token) {
           // Set user immediately from localStorage for faster loading
@@ -47,6 +65,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               // Token is invalid, remove everything
               localStorage.removeItem("authToken");
               localStorage.removeItem("userData");
+              localStorage.removeItem("loginTimestamp");
               setUser(null);
             }
           } catch (error) {
@@ -68,12 +87,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(userData);
     // Store user data in localStorage for persistence
     localStorage.setItem("userData", JSON.stringify(userData));
+    // Store login timestamp for 12h expiration
+    localStorage.setItem("loginTimestamp", Date.now().toString());
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem("authToken");
     localStorage.removeItem("userData");
+    localStorage.removeItem("loginTimestamp");
     // Redirect to home page
     window.location.href = "/";
   };
