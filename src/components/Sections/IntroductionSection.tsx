@@ -5,10 +5,12 @@ import StartButton from "../StartButton";
 
 interface IntroductionSectionProps {
   onStartClick?: () => void;
+  isLoading?: boolean;
 }
 
 export default function IntroductionSection({
   onStartClick,
+  isLoading = false,
 }: IntroductionSectionProps) {
   return (
     <div className="w-full h-screen relative z-10 overflow-hidden">
@@ -52,7 +54,7 @@ export default function IntroductionSection({
         <p className="text-[10px] md:text-xs font-light mb-8 font-garet text-primary">
           Para transformar tu manera de pensar, vivir y sentir.
         </p>
-        <StartButton onStartClick={onStartClick} />
+        <StartButton onStartClick={onStartClick} isLoading={isLoading} />
       </div>
 
       <div

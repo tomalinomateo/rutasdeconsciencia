@@ -1,22 +1,42 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
 
-export default function BackButton() {
+interface BackButtonProps {
+  onTransitionStart?: () => void;
+}
+
+export default function BackButton({ onTransitionStart }: BackButtonProps) {
   const router = useRouter();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleBackClick = () => {
+    setIsTransitioning(true);
+
+    // Start exit transition
+    if (onTransitionStart) {
+      onTransitionStart();
+    }
+
+    // Navigation is now handled by the parent component
+  };
 
   return (
     <Button
-      onClick={() => router.push("/")}
+      onClick={handleBackClick}
       variant="ghost"
-      size="md"
-      className="mb-8"
+      size="sm"
+      className={`mb-8 transition-all duration-300 px-3 py-1 text-sm ${
+        isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"
+      }`}
+      disabled={isTransitioning}
     >
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-1">
         <svg
-          width="20"
-          height="20"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +49,9 @@ export default function BackButton() {
             strokeLinejoin="round"
           />
         </svg>
-        <span>Volver</span>
+        <span className="text-xs">
+          {isTransitioning ? "Volviendo..." : "Volver"}
+        </span>
       </div>
     </Button>
   );

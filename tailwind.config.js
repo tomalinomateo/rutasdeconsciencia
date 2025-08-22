@@ -32,6 +32,11 @@ module.exports = {
         error: "#ef4444",
         warning: "#f59e0b",
       },
+      transitionDuration: {
+        800: "800ms",
+        1000: "1000ms",
+        1200: "1200ms",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -659,6 +659,82 @@ export default function StylesPage() {
                 </div>
               </div>
 
+              {/* Colores de PageTransition */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                  Colores de PageTransition
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div
+                      className="w-16 h-16 rounded-lg shadow-lg border border-gray-700"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, #0f0f0f 0%, #111827 100%)",
+                      }}
+                    ></div>
+                    <div>
+                      <h4 className="font-garet font-medium text-[#fff3db]">
+                        PageTransition Gradient
+                      </h4>
+                      <p className="text-gray-400 text-sm">
+                        linear-gradient(135deg, #0f0f0f 0%, #111827 100%)
+                      </p>
+                      <p className="text-gray-500 text-xs">
+                        Fondo de transiciones y página del curso
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Overlay de transición,
+                        pantalla de bienvenida, fondo de la página del curso
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Colores:</strong> #0f0f0f (negro oscuro) →
+                        #111827 (gris muy oscuro)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Colores de EntranceTransition */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
+                  Colores de EntranceTransition
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div
+                      className="w-16 h-16 rounded-lg shadow-lg border border-gray-700"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, #0f0f0f 0%, #111827 50%, #1f2937 100%)",
+                      }}
+                    ></div>
+                    <div>
+                      <h4 className="font-garet font-medium text-[#fff3db]">
+                        EntranceTransition Gradient
+                      </h4>
+                      <p className="text-gray-400 text-sm">
+                        linear-gradient(135deg, #0f0f0f 0%, #111827 50%, #1f2937
+                        100%)
+                      </p>
+                      <p className="text-gray-500 text-xs">
+                        Fondo de transición de entrada de la página principal
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Usado en:</strong> Animación de entrada de la
+                        página de home, transición inicial con logo y texto
+                        espiritual
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">
+                        <strong>Colores:</strong> #0f0f0f (negro oscuro) →
+                        #111827 (gris muy oscuro) → #1f2937 (gris oscuro)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Colores de Estado */}
               <div className="space-y-6">
                 <h3 className="text-xl font-garet font-semibold text-[#fff3db] border-b border-gray-700 pb-2">
@@ -831,6 +907,25 @@ export default function StylesPage() {
                     </li>
                     <li>
                       <code>--error: #ef4444</code>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-garet font-medium text-[#fff3db] mb-2">
+                    Colores de Transición
+                  </h4>
+                  <ul className="space-y-1 text-sm text-gray-300">
+                    <li>
+                      <code>--transition-start: #0f0f0f</code>
+                    </li>
+                    <li>
+                      <code>--transition-end: #111827</code>
+                    </li>
+                    <li>
+                      <code>
+                        --transition-gradient: linear-gradient(135deg, #0f0f0f
+                        0%, #111827 100%)
+                      </code>
                     </li>
                   </ul>
                 </div>
